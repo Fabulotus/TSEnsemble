@@ -4,6 +4,8 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 from TSEnsemble import utils
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.svm import SVR
+from sklearn.neighbors import KNeighborsRegressor
 import matplotlib.pyplot as plt
 import pandas as pd
 from catboost import CatBoostRegressor
@@ -335,12 +337,12 @@ class Ensemble():
 
         if not(early_stop is None) and isinstance(early_stop, int):
             earlystop = lgb.early_stopping(early_stop)
-            regr = regr.fit(ensemble_train_x,
+            regr.fit(ensemble_train_x,
                             regr_train_y,
                             eval_set = (ensemble_val_x, regr_val_y),
                             callbacks = [earlystop])
         else:
-            regr = regr.fit(ensemble_train_x,
+            regr.fit(ensemble_train_x,
                             regr_train_y,
                             eval_set = (ensemble_val_x, regr_val_y))
             
@@ -359,12 +361,12 @@ class Ensemble():
         regr = CatBoostRegressor(**params)
 
         if not(early_stop is None) and isinstance(early_stop, int):
-            regr = regr.fit(ensemble_train_x,
+            regr.fit(ensemble_train_x,
                             regr_train_y,
                             eval_set = (ensemble_val_x, regr_val_y),
                             early_stopping_rounds = early_stop)
         else:
-            regr = regr.fit(ensemble_train_x,
+            regr.fit(ensemble_train_x,
                             regr_train_y,
                             eval_set = (ensemble_val_x, regr_val_y))
 
@@ -375,6 +377,45 @@ class Ensemble():
         invertedMetric = np.array([1/x for x in metrics])
         weights = invertedMetric/invertedMetric.sum()
         regr = wMeanRegressor(weights)
+        
+    elif self.regressor.lower() == "linear_regression" or self.regressor.lower() == "lr" or self.regressor.lower() == "linear":
+        if regr_params is None:
+            if self.regr_params is None:
+               params = {}
+            else:
+                params = self.regr_params
+        else:
+            params = regr_params
+            
+        regr = LinearRegression(**params)
+        X = np.array(ensemble_train_x.tolist() + ensemble_val_x.tolist())
+        y = np.array(regr_train_y.tolist() + regr_val_y.tolist())
+        regr.fit(X, y)
+    elif self.regressor.lower() == "svr":
+        if regr_params is None:
+            if self.regr_params is None:
+                params = {'C': 1.0,
+                          'epsilon': 0.2}
+            else:
+                params = self.regr_params
+        else:
+            params = regr_params
+        regr = SVR(**params)
+        X = np.array(ensemble_train_x.tolist() + ensemble_val_x.tolist())
+        y = np.array(regr_train_y.tolist() + regr_val_y.tolist())
+        regr.fit(X, y)
+    elif self.regressor.lower() == "k_nearest_neighbours" or self.regressor.lower() == "k" or self.regressor.lower() == "k_nearest" or self.regressor.lower() == "k_neighbours" or self.regressor.lower() == "knn":
+        if regr_params is None:
+            if self.regr_params is None:
+                params = {'n_neighbors': 2}
+            else:
+                params = self.regr_params
+        else:
+            params = regr_params
+        regr = KNeighborsRegressor(**params)
+        X = np.array(ensemble_train_x.tolist() + ensemble_val_x.tolist())
+        y = np.array(regr_train_y.tolist() + regr_val_y.tolist())
+        regr.fit(X, y)
     else:
        raise Exception("Regressor is not supported")
 
