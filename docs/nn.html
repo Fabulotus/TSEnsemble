@@ -1,0 +1,3463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>TSEnsemble.nn API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>TSEnsemble.nn</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from statsmodels.tsa.arima.model import ARIMA
+import matplotlib.pyplot as plt
+import keras
+from keras import layers
+from keras.models import Model, Sequential, load_model
+from keras.layers import Conv1D, Dense, Flatten, LSTM, GRU, SimpleRNN, MaxPooling1D, Dropout, Reshape
+from keras.callbacks import EarlyStopping, ModelCheckpoint
+from TSEnsemble import utils, arima
+from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
+import numpy as np
+
+patience = 10  # patience for early_stopping
+
+
+def make_cnn(dataset,
+              hidden_layers = 1,
+                look_back = 12,
+                filters = None,
+                horizon = 1,
+                kernel_size = 12,
+                train_size = 0.9,
+                test_size = None,
+                val_size = None, 
+                plot = True,
+                max_plot = 70, 
+                fig_size = (15, 5),
+                dilation_rate = 1,
+                dilation_mode = &#34;additive&#34;,
+                batch_size = 12,
+                epochs = 20, 
+                verbose = 0,
+                n_features = 1,
+                padding = &#39;causal&#39;,
+                strides = 1,
+                activation = &#34;relu&#34;,
+                dense_layers = None):
+    
+
+    &#34;&#34;&#34;
+    Generates, fits and evals CNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution
+        horizon (int): amount of output values
+        kernel_size (int): the size of the convolution window
+        train_size (float, None): Value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): Value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): Value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        max_plot(int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        verbose (int): print additional information.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        activation (str): activation function.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+
+    Returns:
+        object: fitted CNN model.
+    &#34;&#34;&#34;     
+
+    model = generate_cnn( hidden_layers = hidden_layers,
+                          look_back = look_back,
+                          horizon = horizon,
+                          kernel_size = kernel_size,
+                          dilation_mode = dilation_mode,
+                          dilation_rate = dilation_rate,
+                          n_features = n_features,
+                          filters = filters,
+                          padding = padding,
+                          strides = strides,
+                          activation = activation,
+                          dense_layers = dense_layers)
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset(
+        dataset, 
+        train_size = train_size, 
+        look_back = look_back, 
+        val_size = val_size,
+        test_size = test_size)
+                                                                                             
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/cnn_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;) 
+
+    model.fit(train_x,
+          train_y,
+          batch_size=batch_size,
+          epochs=epochs,
+          validation_data=(val_x, val_y),
+          callbacks=[earlystop, best_val],
+          verbose=verbose)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot, plot = plot, fig_size = fig_size)
+
+    return model
+
+def make_rnn(dataset, 
+            hidden_layers = 1, 
+            look_back = 12, 
+            horizon = 1, 
+            train_size = 0.9,
+            test_size = None, 
+            val_size = None, 
+            units = 32, 
+            dropout = 0.0, 
+            type = &#39;GRU&#39;,  
+            n_features = 1,
+            plot = True,
+            batch_size = None,
+            epochs = 20,
+            max_plot = 70, 
+            fig_size = (15, 5)):
+    &#34;&#34;&#34;
+    Generates, fits and evals a RNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        units (int): amount of units in the convolution
+        dropout (float): fraction of the units to drop for the linear transformation of the inputs
+        type (&#34;gru&#34;, &#34;simplernn&#34;, &#34;lstm&#34;): type of a RNN model.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
+    &#34;&#34;&#34; 
+    model = generate_rnn(hidden_layers = hidden_layers, units = units, look_back = look_back, horizon = horizon, dropout = dropout, type = type, n_features = n_features)
+
+    if batch_size is None:
+        batch_size = 16
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset( 
+        dataset, 
+        train_size = train_size, 
+        look_back = look_back,  
+        val_size = val_size,
+        test_size = test_size)
+                                                                                              
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/rnn_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;)                                                                                                        
+    model.fit(train_x,
+          train_y,
+          batch_size = batch_size,
+          epochs = epochs,
+          validation_data = (val_x, val_y),
+          callbacks = [earlystop, best_val],
+          verbose = 0)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot,  fig_size = fig_size, plot = plot)
+
+    return model
+
+def make_transformer(dataset,
+                    train_size = 0.9,
+                    test_size = None,
+                    val_size = None, 
+                    batch_size = 32,
+                    epochs = 20,
+                    verbose = False,
+                    look_back = 12, 
+                    horizon = 1,
+                    n_features = 1,
+                    num_transformer_blocks = 4,
+                    dropout = 0.25, 
+                    head_size = 256, 
+                    num_heads = 4, 
+                    ff_dim = 4,
+                    mlp_units = [128],
+                    mlp_dropout = 0.4,
+                    plot = True,
+                    max_plot = 100, 
+                    fig_size = (15, 5)):
+    &#34;&#34;&#34;
+    Generates, fits and evals generator. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        verbose (bool): print additional information.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        num_transformer_blocks (int): amount of transformer blocks.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        head_size = (int): size of a head in a multi-head attention layer.
+        num_heads = (int): amount of heads in a multi-head attention layer.
+        ff_dim = (int): amount of filters in a feed forward part
+        mlp_units = (list of ints): values of mlp units
+        mlp_dropout = (int): fraction of the units to drop in a mlp part.
+        plot (bool): plot predictions.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
+    &#34;&#34;&#34; 
+    model = generate_transformer(look_back = look_back, 
+                            horizon = horizon,
+                            n_features = n_features,
+                            num_transformer_blocks = num_transformer_blocks,
+                            dropout = dropout, 
+                            head_size=head_size, 
+                            num_heads=num_heads, 
+                            ff_dim=ff_dim,
+                            mlp_units=mlp_units,
+                            mlp_dropout=mlp_dropout)
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset(
+        dataset, 
+        train_size = train_size, 
+        test_size = test_size,
+        look_back = look_back, 
+        val_size = val_size)
+
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 50, restore_best_weights=True)
+    best_val = ModelCheckpoint(&#39;generated_models/transformer_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;) 
+
+    model.fit(train_x,
+          train_y,
+          batch_size = batch_size,
+          epochs = epochs,
+          validation_data = (val_x, val_y),
+          callbacks = [earlystop, best_val],
+          verbose = verbose)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot, plot = plot, fig_size = fig_size)
+
+    return model
+
+def make_seq_model(dataset, 
+            layers = [&#34;cnn&#34;, &#34;lstm&#34;], 
+            look_back = 12,
+            filters = 32,
+            horizon = 1, 
+            dropout = 0.0,  
+            n_features = 1, 
+            kernel_size = None, 
+            dilation_rate = 1, 
+            dilation_mode = &#34;additive&#34;,
+            optimizer = &#34;Adam&#34;,
+            loss = &#34;mae&#34;,
+            train_size = 0.9, 
+            test_size = None,
+            val_size = None,  
+            plot = True,
+            batch_size = None,
+            units = 32,
+            epochs = 20,
+            max_plot = 70, 
+            padding = &#39;causal&#39;,
+            strides = 1,
+            pool_size = 2,
+            conv_activation = &#34;relu&#34;,
+            dense_layers = None,
+            fig_size = (15, 5)):
+    
+
+    &#34;&#34;&#34;
+    Generates, fits and evals a sequence (cnn, rnn combination) model with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        layers (list of str): layers of a seq model.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network.
+        units (int): amount of units in the convolution
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        pool_size (int): size of the max pooling window.
+        conv_activation (str): activation function of convolutional layers.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
+    &#34;&#34;&#34; 
+    model = generate_seq_model(layers = layers, 
+                            look_back = look_back,
+                            units = units,
+                            filters = filters,
+                            horizon = horizon, 
+                            dropout = dropout, 
+                            n_features = n_features,
+                            kernel_size = kernel_size,
+                            dilation_rate = dilation_rate, 
+                            dilation_mode = dilation_mode,
+                            optimizer = optimizer,
+                            loss = loss,
+                            padding = padding,
+                            strides = strides,
+                            pool_size = pool_size,
+                            conv_activation = conv_activation,
+                            dense_layers = dense_layers)
+
+    if batch_size is None:
+        batch_size = 16
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset( 
+        dataset, 
+        train_size = train_size, 
+        look_back = look_back, 
+        val_size = val_size,
+        test_size = test_size)  
+                                                                                       
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/seq_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;) 
+    model.fit(train_x,
+          train_y,
+          batch_size = batch_size,
+          epochs = epochs,
+          validation_data = (val_x, val_y),
+          callbacks = [earlystop, best_val],
+          verbose = 0)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot, fig_size = fig_size, plot = plot)
+
+    return model
+
+def generate_cnn(hidden_layers = 1, 
+                 look_back = 12, 
+                 filters = None,
+                 horizon = 1, 
+                 kernel_size = 2, 
+                 pool_size = 2,
+                 dilation_rate = 1, 
+                 dilation_mode = &#34;multiplicative&#34;,  
+                 n_features = 1, 
+                 padding = &#39;causal&#39;,
+                 strides = 1,
+                 activation = &#34;relu&#34;,
+                 dense_layers = None): 
+    &#34;&#34;&#34;
+    Generates a CNN with set amount of layers
+    
+    Args:
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution
+        horizon (int): amount of output values
+        kernel_size (int): the size of the convolution window
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        batch_size (int): the number of samples that will be propagated through the network
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        activation (str): activation function.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+
+    Returns:
+        object: unfitted CNN model.
+    &#34;&#34;&#34; 
+    # Create and fit the CNN
+    model = Sequential()
+    if filters is None:
+        filters = 2 * look_back 
+    # Add hidden layers
+    if isinstance(filters, list):
+        model.add(Conv1D(filters[0], 
+                        kernel_size=kernel_size, 
+                        padding=padding, 
+                        strides=strides, 
+                        activation=activation, 
+                        dilation_rate=dilation_rate, 
+                        input_shape=(look_back,  n_features)))
+    else:
+        model.add(Conv1D(filters, 
+                kernel_size=kernel_size, 
+                padding=padding, 
+                strides=strides, 
+                activation=activation, 
+                dilation_rate=dilation_rate, 
+                input_shape=(look_back,  n_features)))
+        
+    model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+    for i in range(hidden_layers-1):
+        if not (dilation_mode is None):
+            if dilation_mode == &#34;multiplicative&#34;:
+                dilation_rate = dilation_rate * 2
+            if dilation_mode == &#34;additive&#34;:
+                dilation_rate = dilation_rate + 1
+        if isinstance(filters, list):
+            model.add(Conv1D(filters[i+1], 
+                            kernel_size = kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=activation, 
+                            dilation_rate=dilation_rate))
+        else:
+            model.add(Conv1D(filters, 
+                kernel_size = kernel_size, 
+                padding=padding, 
+                strides=strides, 
+                activation=activation, 
+                dilation_rate=dilation_rate))
+        model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+    # Add output layer
+    model.add(Flatten())
+
+    # Add dense layers
+    if dense_layers is None:
+        dense_layers = [50, horizon]
+    for layer in dense_layers:
+        model.add(Dense(layer))
+
+    # compile model
+    model.compile(optimizer = &#34;Adam&#34;, loss = &#34;mse&#34;)
+    return model
+
+def generate_rnn(hidden_layers = 1, units = 32, look_back = 12, horizon = 1, dropout = 0.0, type = &#39;GRU&#39;, n_features = 1):
+    &#34;&#34;&#34;
+   Generates a RNN with set amount of layers
+   
+    Args:
+        hidden_layers (int): amount of hidden layers.
+        units (int): amount of units in the convolution
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values
+        dropout (float): fraction of the units to drop for the linear transformation of the inputs
+        type (&#34;gru&#34;, &#34;simplernn&#34;, &#34;lstm&#34;): type of a RNN model.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+
+    Returns:
+        object: unfitted RNN model.
+    &#34;&#34;&#34;
+
+    model = Sequential()
+    return_sequences = hidden_layers &gt; 1  # Last layer cannot return sequences when stacking
+    if isinstance (units, int):
+        # Add hidden layers
+        if type.lower() == &#39;lstm&#39;:
+            model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;gru&#39;:
+            model.add(GRU(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))   
+        else:
+            print(&#34;Type is not supported!&#34;)
+
+        for i in range(hidden_layers - 1):
+            return_sequences = i &lt; hidden_layers - 2  # Last layer cannot return sequences when stacking
+
+            # Select and add type of layer
+            if type.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;gru&#39;:
+                model.add(GRU(units, dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences))
+    else:
+        # Add hidden layers
+        if type.lower() == &#39;lstm&#39;:
+            model.add(LSTM(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;gru&#39;:
+            model.add(GRU(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))   
+        else:
+            print(&#34;Type is not supported!&#34;)
+
+        for i in range(hidden_layers - 1):
+            return_sequences = i &lt; hidden_layers - 2  # Last layer cannot return sequences when stacking
+
+            # Select and add type of layer
+            if type.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units[i+1], dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;gru&#39;:
+                model.add(GRU(units[i+1], dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units[i+1], dropout=dropout, return_sequences=return_sequences))
+    
+
+
+
+    model.add(Dense(horizon))
+
+    # compile model
+    if type.lower() == &#39;lstm&#39;:
+        model.compile(optimizer=&#39;Adam&#39;, loss=&#39;mae&#39;)
+    else:
+        model.compile(optimizer=&#39;RMSprop&#39;, loss=&#39;mse&#39;)
+
+    return model
+
+def generate_transformer(   look_back = 12, 
+                            horizon = 1,
+                            n_features = 1,
+                            num_transformer_blocks = 4,
+                            dropout = 0.25, 
+                            head_size = 256, 
+                            num_heads = 4, 
+                            ff_dim = 4,
+                            mlp_units = [128],
+                            mlp_dropout = 0.4):
+    &#34;&#34;&#34;
+   Generates a Transformer model
+   
+    Args:
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        num_transformer_blocks (int): amount of transformer blocks.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        head_size = (int): size of a head in a multi-head attention layer.
+        num_heads = (int): amount of heads in a multi-head attention layer.
+        ff_dim = (int): amount of filters in a feed forward part
+        mlp_units = (list of ints): values of mlp units
+        mlp_dropout = (int): fraction of the units to drop in a mlp part.
+
+    Returns:
+        object: unfitted Transformer model.
+    &#34;&#34;&#34;
+    model = Transformer(look_back = look_back, 
+                        horizon = horizon,
+                        n_features = n_features,
+                        num_transformer_blocks = num_transformer_blocks,
+                        dropout = dropout, 
+                        head_size = head_size, 
+                        num_heads = num_heads, 
+                        ff_dim = ff_dim,
+                        mlp_units = mlp_units,
+                        mlp_dropout = mlp_dropout)
+    model = model.build()
+    model.compile(optimizer=&#34;Adam&#34;, 
+                  loss = &#34;mse&#34;,
+                  metrics=[keras.metrics.RootMeanSquaredError(), keras.metrics.MeanAbsoluteError(), keras.metrics.MeanAbsolutePercentageError()])
+    return model
+    
+def generate_seq_model(layers = [&#34;cnn&#34;, &#34;lstm&#34;], 
+                       look_back = 12, 
+                       filters = 32,
+                       units = 32,
+                       horizon = 1, 
+                       dropout = 0.0, 
+                       n_features = 1, 
+                       kernel_size = None, 
+                       dilation_rate = 1, 
+                       dilation_mode = &#34;additive&#34;,
+                       optimizer = &#34;Adam&#34;,
+                       loss = &#34;mae&#34;,
+                       padding = &#39;causal&#39;,
+                       strides = 1,
+                       pool_size = 2,
+                       conv_activation = &#34;relu&#34;,
+                       dense_layers = None):
+    &#34;&#34;&#34;
+   Generates a sequence (cnn, rnn combination) model
+   
+    Args:
+        layers (list of str): layers of a seq model.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        pool_size (int): size of the max pooling window.
+        conv_activation (str): activation function of convolutional layers.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        
+    Returns:
+        object: unfitted sequence model.
+    &#34;&#34;&#34;
+
+    model = Sequential()
+    if kernel_size is None:
+        kernel_size = 2 
+
+    unit_c = 0
+    filter_c = 0
+    return_sequences = len(layers) &gt; 1
+    # Add hidden layers
+    if isinstance(units, int):
+        if layers[0].lower() == &#39;lstm&#39;:
+            model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif layers[0].lower() == &#39;gru&#39;:
+            model.add(GRU(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif layers[0].lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))   
+    else:
+        if layers[0].lower() == &#39;lstm&#39;:
+            model.add(LSTM(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+            unit_c = unit_c + 1
+        elif layers[0].lower() == &#39;gru&#39;:
+            model.add(GRU(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+            unit_c = unit_c + 1
+        elif layers[0].lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))  
+            unit_c = unit_c + 1
+
+    if layers[0].lower() == &#39;cnn&#39;:
+        if isinstance(filters, list):
+            model.add(Conv1D(filters[filter_c], 
+            kernel_size = kernel_size, 
+            padding = padding,
+            strides = strides, 
+            activation = conv_activation, 
+            dilation_rate = dilation_rate, 
+            input_shape = (look_back,  n_features)))
+            filter_c = filter_c + 1
+        else:
+            model.add(Conv1D(filters, 
+            kernel_size = kernel_size, 
+            padding = padding,
+            strides = strides, 
+            activation = conv_activation, 
+            dilation_rate = dilation_rate, 
+            input_shape = (look_back,  n_features)))
+        model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+    i = 0
+    for layer in layers:
+        if i == 0:
+            i = i + 1
+            continue
+        return_sequences = i &lt; len(layers) - 1
+        # Select and add type of layer
+        if isinstance(units, int):
+            if layer.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences))
+            elif layer.lower() == &#39;gru&#39;:
+                model.add(GRU(units, dropout=dropout, return_sequences=return_sequences))
+            elif layer.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences))
+            elif layer.lower() == &#39;cnn&#39;:
+                if dilation_mode == &#34;multiplicative&#34;:
+                    dilation_rate = dilation_rate * 2
+                if dilation_mode == &#34;additive&#34;:
+                    dilation_rate = dilation_rate + 1
+                if isinstance(filters, int):
+                    model.add(Conv1D(filters, 
+                        kernel_size = kernel_size, 
+                        padding = padding, 
+                        strides = strides, 
+                        activation = conv_activation, 
+                        dilation_rate = dilation_rate))
+                else:
+                    model.add(Conv1D(filters[filter_c], 
+                                    kernel_size = filters, 
+                                    padding = padding, 
+                                    strides = strides, 
+                                    activation = conv_activation, 
+                                    dilation_rate = dilation_rate))
+                    filter_c = filter_c + 1
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+            else:
+                print(&#34;Type is not supported!&#34;)
+        else:
+            if layer.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units[unit_c], dropout=dropout, return_sequences=return_sequences))
+                unit_c = unit_c + 1
+            elif layer.lower() == &#39;gru&#39;:
+                model.add(GRU(units[unit_c], dropout=dropout, return_sequences=return_sequences))
+                unit_c = unit_c + 1
+            elif layer.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units[unit_c], dropout=dropout, return_sequences=return_sequences))
+                unit_c = unit_c + 1
+            elif layer.lower() == &#39;cnn&#39;:
+                if dilation_mode == &#34;multiplicative&#34;:
+                    dilation_rate = dilation_rate * 2
+                if dilation_mode == &#34;additive&#34;:
+                    dilation_rate = dilation_rate + 1
+                if isinstance(filters, int):
+                    model.add(Conv1D(filters, 
+                        kernel_size = kernel_size, 
+                        padding = padding, 
+                        strides = strides, 
+                        activation = conv_activation, 
+                        dilation_rate = dilation_rate))
+                else:
+                    model.add(Conv1D(filters[filter_c], 
+                                    kernel_size = filters, 
+                                    padding = padding, 
+                                    strides = strides, 
+                                    activation = conv_activation, 
+                                    dilation_rate = dilation_rate))
+                    filter_c = filter_c + 1
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+            else:
+                print(&#34;Type is not supported!&#34;)
+        i = i + 1
+
+    if dense_layers is None:
+        dense_layers = [horizon]
+    for layer in dense_layers:
+        model.add(Dense(int(layer)))
+        
+    # Add output layer
+    model.compile(optimizer = optimizer, loss = loss)
+
+    return model
+
+class ACL:
+    &#34;&#34;&#34;
+    Arima-CNN-LSTM model that uses CNN-LSTM on residuals from arima predictions.
+    &#34;&#34;&#34;
+    def __init__(self,
+            order = None,
+            seasonal_order = None,
+            season = None,
+            look_back = 12, 
+            horizon = 1):
+        &#34;&#34;&#34;
+        Initialize an ACL object.
+        Args:
+            order (None, tuple(int, int, int)): p, d, q values.
+            seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+            season (None, int): season value.
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values
+        &#34;&#34;&#34;
+        self.order = order
+        self.seasonal_order = seasonal_order
+        self.season = season
+        self.look_back = look_back
+        self.horizon = horizon
+        
+
+    def fit(self,
+                dataset,
+                order = None,
+                seasonal_order = None,
+                season = None,
+                auto = False, 
+                look_back = 12, 
+                horizon = 1, 
+                dropout = 0.0, 
+                n_features = 1, 
+                kernel_size = None, 
+                dilation_rate = 1, 
+                dilation_mode = &#34;additive&#34;,
+                optimizer = &#34;Adam&#34;,
+                loss = &#34;mae&#34;,
+                train_size = 0.95, 
+                test_size = None,
+                val_size = None,  
+                plot = True,
+                batch_size = None,
+                epochs = 20,
+                max_plot = 150, 
+                fig_size = (15, 5),
+                verbose = True,
+                padding = &#39;causal&#39;,
+                strides = 1,
+                cnn_layers = 1,
+                lstm_layers = 1,
+                pool_size = 2,
+                fitted = True,
+                dense_layers = None,
+                filters = None,
+                units = None,
+                cnn_activation = &#34;relu&#34;):
+        &#34;&#34;&#34;
+        Initialize an ACL object.
+        
+        Args:
+            dataset (DataFrame, ndarray): dataset to use.
+            order (None, tuple(int, int, int)): p, d, q values.
+            seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+            season (None, int): season value.
+            auto (bool): use auto_arima.
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values.
+            dropout = (float): fraction of the units to drop in a feed-forward part.
+            n_features (int): dimensions of time series. Multivariate time series not fully supported.
+            kernel_size (int): the size of the convolution window.
+            dilation_rate (int): the dilation rate to use for dilated convolution.
+            dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+            optimizer (str): optimizer to use for compiling a model.
+            loss (str): loos metric to use for compiling a model.
+            train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+            test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+            val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+            plot (bool): plot predictions.
+            batch_size (int): the number of samples that will be propagated through the network.
+            epochs (int): amount of iterations of NN models through whole training data.
+            max_plot (int): maximum number of values to plot.
+            fig_size ((int, int)): size of a plot.
+            verbose (int): print additional information.
+            padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+            strides (int):  stride length of the convolution.
+            cnn_layers (int): amount of cnn layers to use.
+            lstm_layers (int): amount of lstm layers to use.
+            pool_size (int): size of the max pooling window.
+            fitted (bool): return fitted model.
+            dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+            filters (None, int): amount of filters in the convolution.
+            units (None, int): amount of units in the convolution.
+            cnn_activation (str): activation function of convolutional layers.
+        Returns:
+            object: ACL model.
+        &#34;&#34;&#34;
+        if self.order is None:
+            if order is None:
+                auto = True
+            else:
+                self.order = order
+
+        if not(seasonal_order is None):
+            self.seasonal_order = seasonal_order
+        if not(season is None):
+            self.season = season
+        if not(look_back is None):
+            self.look_back = look_back
+        if not(horizon is None):
+            self.horizon = horizon
+
+        self.train_size = train_size
+        self.test_size = test_size
+
+        if season is None:
+            if not(seasonal_order is None):
+                self.season == self.seasonal_order[3]
+            else: 
+                self.season = self.look_back
+        else:
+            self.season = season
+
+        if batch_size is None:
+            batch_size = 16
+
+        if kernel_size is None:
+            kernel_size = 2 
+
+        if auto:
+            arima_model = arima.auto_arima(dataset, season = self.season)
+        elif self.order is None:
+            raise Exception(&#34;Order is not set and auto is False. Set auto to true?&#34;)
+        else:
+            arima_model = arima.make_arima(dataset, 
+                            self.order, 
+                            seasonal_order = self.seasonal_order,
+                            train_size = train_size, 
+                            test_size = test_size,
+                            fig_size = fig_size,
+                            max_plot = max_plot,
+                            plot = False,
+                            verbose = False)
+            
+        self.arima_model = arima_model
+
+        train_x, train_y, val_x, val_y, test_x, test_y, trainScaler, valScaler, testScaler = utils.prepare_dataset( 
+            dataset, 
+            train_size = train_size, 
+            look_back = self.look_back, 
+            val_size = val_size)
+        
+        train_end = len(train_y) + self.look_back - 1
+        arima_predictions = arima_model.predict(self.look_back, train_end)
+        arima_val_predictions = arima_model.predict(train_end + self.look_back, train_end + len(val_y) + self.look_back - 1)
+        unscaled_train_y = trainScaler.inverse_transform(train_y.reshape(-1,1)).flatten()
+        unscaled_val_y = valScaler.inverse_transform(val_y.reshape(-1,1)).flatten()
+        residuals = np.subtract(arima_predictions, unscaled_train_y)
+        val_residuals = np.subtract(arima_val_predictions, unscaled_val_y)
+
+        model = Sequential()
+        if filters is None:
+            filters = 2 * self.look_back 
+        # Add hidden layers
+        filters_c = 0
+        units_c = 0
+        if isinstance(filters, int):
+            model.add(Conv1D(filters, 
+                            kernel_size=kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=cnn_activation, 
+                            dilation_rate=dilation_rate, 
+                            input_shape=(look_back,  n_features)))
+            model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+        else:
+            model.add(Conv1D(filters[filters_c], 
+                            kernel_size=kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=cnn_activation, 
+                            dilation_rate=dilation_rate, 
+                            input_shape=(look_back,  n_features)))
+            filters_c = filters_c + 1
+            model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+        for _ in range(cnn_layers-1):
+            if not (dilation_mode is None):
+                if dilation_mode == &#34;multiplicative&#34;:
+                    dilation_rate = dilation_rate * 2
+                if dilation_mode == &#34;additive&#34;:
+                    dilation_rate = dilation_rate + 1
+            if isinstance(filters, int):
+                model.add(Conv1D(filters, 
+                                kernel_size = kernel_size, 
+                                padding=padding, 
+                                strides=strides, 
+                                activation=cnn_activation, 
+                                dilation_rate=dilation_rate))
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+            else:
+                model.add(Conv1D(filters[filters_c], 
+                kernel_size=kernel_size, 
+                padding=padding, 
+                strides=strides, 
+                activation=cnn_activation, 
+                dilation_rate=dilation_rate, 
+                input_shape=(look_back,  n_features)))
+                filters_c = filters_c + 1
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+        # Add output layer
+        model.add(Flatten())
+        model.add(Dropout(dropout))
+        model.add(Reshape((-1,1)))
+
+        if units is None:
+            units = look_back * 5
+
+        return_sequences = lstm_layers &gt; 1
+        if isinstance(units, int):
+            model.add(LSTM(units, return_sequences=return_sequences, input_shape=(self.look_back, n_features)))
+        else:
+            model.add(LSTM(units[units_c], return_sequences=return_sequences, input_shape=(self.look_back, n_features)))
+            units_c = units_c + 1
+
+        for i in range(lstm_layers - 1):
+            return_sequences = i &lt; lstm_layers - 2  # Last layer should not return sequences when stacking
+            if isinstance(units, int):
+                model.add(LSTM(units, return_sequences=return_sequences))
+            else:
+                model.add(LSTM(units[units_c], return_sequences=return_sequences))
+                units_c = units_c + 1
+
+        # Add dense layers
+        if dense_layers is None:
+            dense_layers = [look_back * 3, horizon]
+        for layer in dense_layers:
+            model.add(Dense(layer))
+
+        # compile model
+        model.compile(optimizer = optimizer, loss = loss)
+
+        earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+        best_val = ModelCheckpoint(&#39;generated_models/acl_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;)                                                                                                        
+        model.fit(train_x,
+            residuals, 
+            batch_size = batch_size,
+            epochs = epochs, 
+            validation_data = (val_x, val_residuals), 
+            callbacks = [earlystop, best_val], 
+            verbose=0)
+        self.model = model
+
+        if fitted == False:
+          return model 
+
+        test_y = testScaler.inverse_transform(test_y.reshape(-1,1)).flatten()
+        arima_test_predictions = self.arima_model.forecast(len(test_y + self.look_back)).flatten()
+        model_test_predictions = self.model.predict(test_x).flatten()
+        test_predictions = np.sum([model_test_predictions, arima_test_predictions], axis = 0) 
+
+        if plot:
+            plt.figure(figsize=fig_size)
+            if max_plot&lt;len(test_y):
+                plt.plot(test_y[-max_plot:], label = &#34;Actual&#34;)
+                plt.plot(test_predictions[-max_plot:], label = &#34;Prediction&#34;)
+            else:
+                plt.plot(test_y, label = &#34;Actual&#34;)
+                plt.plot(test_predictions, label = &#34;Prediction&#34;)               
+            plt.ylabel(&#39;Values&#39;, fontsize=15)
+            plt.legend()
+            plt.show()
+
+        if verbose:
+            predicts = pd.DataFrame({&#39;prediction&#39; : test_predictions, &#39;actual&#39; : test_y})
+            print(predicts)
+
+            rmse = utils.get_rmse(test_predictions, test_y)
+            mse =  utils.get_mse(test_predictions, test_y)
+            mae =  utils.get_mae(test_predictions, test_y)
+            mape =  utils.get_mape(test_predictions, test_y)
+            print(&#34;RMSE = {}, MSE = {}, MAE = {}, MAPE = {}&#34;.format(rmse, mse, mae, mape))
+        return self
+    
+    def predict(self, X):
+        pass
+        
+    def forecast(self, dataset, n, plot = True, datePlot = &#34;date&#34;, dateStep = 1, fig_size = (10,10)):
+        &#34;&#34;&#34;
+        Out-of-sample forecast of a fitted model, based on a given dataset.
+        Plots Predictions, Actuals (with data, if index is datetime64).
+
+        Args:
+            dataset (DataFrame, ndarray): time series dataset.
+            n (int): amount of values to predict.
+            plot (bool): plot predictions and actuals.
+            fig_size ((int, int)): size of a plot.
+            datePlot (&#34;date&#34;, &#34;time&#34;): format of date. Date example : 09.01.2024, time example: 21:10
+            dateStep (int): prints each n date. 
+        Returns:
+            (DataFrame) : predictions and actuals DataFrame.
+        &#34;&#34;&#34;   
+        if isinstance(dataset, str):
+         dataset = utils.ts_from_csv(dataset)
+
+        # Create date indices for predictions
+        if isinstance(dataset, pd.DataFrame) and dataset.index.inferred_type == &#39;datetime64&#39;:
+            if dataset.index.inferred_type == &#39;datetime64&#39;:
+                last_date = dataset.index[-1]
+                delta = last_date - dataset.index[-2]
+                if delta.days &gt;= 28 and delta.days &lt;=31:
+                    delta = pd.DateOffset(months=1)
+                offset = pd.tseries.frequencies.to_offset(delta)
+                dateIndex = pd.date_range(last_date + delta, last_date + delta*n, freq=offset)
+
+        # Scale dataset
+        dataset = np.array(dataset)
+
+        arima_model = ARIMA(dataset, 
+                            order=self.order, 
+                            seasonal_order = self.seasonal_order)
+        arima_model = arima_model.fit()
+        arima_forecast = arima_model.forecast(n)
+
+        Scaler = MinMaxScaler(feature_range=(-1, 1))
+        dataset = Scaler.fit_transform(dataset)
+        dataset = dataset.tolist() 
+        s = self.look_back
+        X = dataset[-s:]
+        predictions = []
+        # Predicts 1 future value based on last look_back values
+        for i in range(n):
+            fromX = s - i
+            a = X[-fromX:] if fromX &gt; 0 else []
+            fromPredictions = min(i,s)
+            a = a + predictions[-fromPredictions:]
+            a = np.array(a).reshape(1, -1, 1)
+            prediction = self.model.predict(a, verbose = 0).tolist()
+            predictions = predictions + prediction
+        # Unscale predictions and add to list
+        # predictions = Scaler.inverse_transform(predictions).flatten().tolist()
+        predictions = np.sum([arima_forecast, np.array(predictions).flatten()], axis = 0) 
+        # predictions = np.sum(arima_forecast, predictions)      
+        # models_predictions = np.array(models_predictions).T.tolist()
+
+
+        df = pd.DataFrame({&#39;predictions&#39;: predictions.flatten()}, index = dateIndex)
+
+        if plot:
+            # Get indices for plotting
+            if datePlot == &#34;date&#34;:
+                date = [str(d)[:10] for d in df.index.values]
+            elif datePlot == &#34;time&#34;: 
+                date = [str(d)[11:16] for d in df.index.values]
+            
+            x = date
+            y = df[&#34;predictions&#34;].values.tolist()
+
+            # plot predictions
+            plt.figure(figsize=fig_size)
+            plt.plot(x,y)
+            plt.xticks(rotation = 75)
+            plt.xticks(np.arange(0, len(x)+1, dateStep))
+            plt.show()
+
+        return df
+        pass
+
+    def eval(self):
+        pass
+
+class Transformer(object):
+
+
+
+    &#34;&#34;&#34; Transformer Recurrent Neural Network
+    &#34;&#34;&#34;
+
+    def __init__(self,
+                look_back = 12, 
+                horizon = 1,
+                n_features = 1,
+                num_transformer_blocks = 4,
+                dropout = 0.25, 
+                head_size=256, 
+                num_heads=4, 
+                ff_dim=4,
+                mlp_units=[128],
+                mlp_dropout=0.4):
+        &#34;&#34;&#34;
+        Initialize a Transformer object
+    
+        Args:
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values.
+            n_features (int): dimensions of time series. Multivariate time series not fully supported.
+            num_transformer_blocks (int): amount of transformer blocks.
+            dropout = (float): fraction of the units to drop in a feed-forward part.
+            head_size = (int): size of a head in a multi-head attention layer.
+            num_heads = (int): amount of heads in a multi-head attention layer.
+            ff_dim = (int): amount of filters in a feed forward part
+            mlp_units = (list of ints): values of mlp units
+            mlp_dropout = (int): fraction of the units to drop in a mlp part.
+        &#34;&#34;&#34;
+        self.look_back = look_back
+        self.n_features = n_features
+        self.horizon = horizon
+
+        self.head_size = head_size
+        self.num_heads = num_heads
+        self.ff_dim = ff_dim
+        self.num_transformer_blocks = num_transformer_blocks
+        self.mlp_units = mlp_units
+        self.mlp_dropout = mlp_dropout
+        self.dropout = dropout                
+        self.mlp_units=mlp_units
+        self.mlp_dropout=mlp_dropout
+
+
+    def transformer_encoder(self,
+        inputs):
+        &#34;&#34;&#34;
+        transformer encoder block
+    
+        Args:
+            inputs (obj): keras input layer.
+        Returns:
+            object: keras model, input layer + transformer block 
+        &#34;&#34;&#34;
+
+        # Normalization and Attention
+        x = layers.LayerNormalization(epsilon=1e-6)(inputs)
+        x = layers.MultiHeadAttention(
+        key_dim=self.head_size, num_heads=self.num_heads, dropout=self.dropout)(x, x)
+        x = layers.Dropout(self.dropout)(x)
+
+        res = x + inputs
+
+        # Feed Forward Part
+        x = layers.LayerNormalization(epsilon=1e-6)(res)
+        x = layers.Conv1D(filters=self.ff_dim, kernel_size=1, activation=&#34;relu&#34;)(x)
+        x = layers.Dropout(self.dropout)(x)
+        x = layers.Conv1D(filters=inputs.shape[-1], kernel_size=1)(x)
+        return x + res
+
+
+    def build(self):
+        &#34;&#34;&#34; 
+        Build the model architecture
+        Returns:
+            object: Transformer model
+        &#34;&#34;&#34;
+
+        inputs = keras.Input(shape=(self.look_back, self.n_features))
+        x = inputs
+        for _ in range(self.num_transformer_blocks):
+            x = self.transformer_encoder(x)
+
+        x = layers.GlobalAveragePooling1D(data_format=&#34;channels_first&#34;)(x)
+        for dim in self.mlp_units:
+            x = layers.Dense(dim, activation=&#34;relu&#34;)(x)
+            x = layers.Dropout(self.mlp_dropout)(x)
+
+        # output layer
+        outputs = layers.Dense(self.horizon)(x)
+
+        return keras.Model(inputs, outputs)
+
+    # def restore(self,
+    #     filepath):
+    #     &#34;&#34;&#34; Restore a previously trained model
+    #     &#34;&#34;&#34;
+
+    #     # Load the architecture
+    #     self.model = load_model(filepath)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="TSEnsemble.nn.generate_cnn"><code class="name flex">
+<span>def <span class="ident">generate_cnn</span></span>(<span>hidden_layers=1, look_back=12, filters=None, horizon=1, kernel_size=2, pool_size=2, dilation_rate=1, dilation_mode='multiplicative', n_features=1, padding='causal', strides=1, activation='relu', dense_layers=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates a CNN with set amount of layers</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>hidden_layers</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of hidden layers.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>filters</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of filters in the convolution</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values</dd>
+<dt><strong><code>kernel_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the size of the convolution window</dd>
+<dt><strong><code>dilation_rate</code></strong> :&ensp;<code>int</code></dt>
+<dd>the dilation rate to use for dilated convolution.</dd>
+<dt>dilation_mode ("additive", "multiplicative", None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.</dt>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the number of samples that will be propagated through the network</dd>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt>padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.</dt>
+<dt><strong><code>strides</code></strong> :&ensp;<code>int</code></dt>
+<dd>stride length of the convolution.</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>activation function.</dd>
+<dt><strong><code>dense_layers</code></strong> :&ensp;<code>None, iterable</code> of <code>ints</code></dt>
+<dd>dense layers at the end of NN. Default value: [1]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>unfitted CNN model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_cnn(hidden_layers = 1, 
+                 look_back = 12, 
+                 filters = None,
+                 horizon = 1, 
+                 kernel_size = 2, 
+                 pool_size = 2,
+                 dilation_rate = 1, 
+                 dilation_mode = &#34;multiplicative&#34;,  
+                 n_features = 1, 
+                 padding = &#39;causal&#39;,
+                 strides = 1,
+                 activation = &#34;relu&#34;,
+                 dense_layers = None): 
+    &#34;&#34;&#34;
+    Generates a CNN with set amount of layers
+    
+    Args:
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution
+        horizon (int): amount of output values
+        kernel_size (int): the size of the convolution window
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        batch_size (int): the number of samples that will be propagated through the network
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        activation (str): activation function.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+
+    Returns:
+        object: unfitted CNN model.
+    &#34;&#34;&#34; 
+    # Create and fit the CNN
+    model = Sequential()
+    if filters is None:
+        filters = 2 * look_back 
+    # Add hidden layers
+    if isinstance(filters, list):
+        model.add(Conv1D(filters[0], 
+                        kernel_size=kernel_size, 
+                        padding=padding, 
+                        strides=strides, 
+                        activation=activation, 
+                        dilation_rate=dilation_rate, 
+                        input_shape=(look_back,  n_features)))
+    else:
+        model.add(Conv1D(filters, 
+                kernel_size=kernel_size, 
+                padding=padding, 
+                strides=strides, 
+                activation=activation, 
+                dilation_rate=dilation_rate, 
+                input_shape=(look_back,  n_features)))
+        
+    model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+    for i in range(hidden_layers-1):
+        if not (dilation_mode is None):
+            if dilation_mode == &#34;multiplicative&#34;:
+                dilation_rate = dilation_rate * 2
+            if dilation_mode == &#34;additive&#34;:
+                dilation_rate = dilation_rate + 1
+        if isinstance(filters, list):
+            model.add(Conv1D(filters[i+1], 
+                            kernel_size = kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=activation, 
+                            dilation_rate=dilation_rate))
+        else:
+            model.add(Conv1D(filters, 
+                kernel_size = kernel_size, 
+                padding=padding, 
+                strides=strides, 
+                activation=activation, 
+                dilation_rate=dilation_rate))
+        model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+    # Add output layer
+    model.add(Flatten())
+
+    # Add dense layers
+    if dense_layers is None:
+        dense_layers = [50, horizon]
+    for layer in dense_layers:
+        model.add(Dense(layer))
+
+    # compile model
+    model.compile(optimizer = &#34;Adam&#34;, loss = &#34;mse&#34;)
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.generate_rnn"><code class="name flex">
+<span>def <span class="ident">generate_rnn</span></span>(<span>hidden_layers=1, units=32, look_back=12, horizon=1, dropout=0.0, type='GRU', n_features=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates a RNN with set amount of layers</p>
+<p>Args:
+hidden_layers (int): amount of hidden layers.
+units (int): amount of units in the convolution
+look_back (int): amount of values in a single X.
+horizon (int): amount of output values
+dropout (float): fraction of the units to drop for the linear transformation of the inputs
+type ("gru", "simplernn", "lstm"): type of a RNN model.
+n_features (int): dimensions of time series. Multivariate time series not fully supported.</p>
+<p>Returns:
+object: unfitted RNN model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_rnn(hidden_layers = 1, units = 32, look_back = 12, horizon = 1, dropout = 0.0, type = &#39;GRU&#39;, n_features = 1):
+    &#34;&#34;&#34;
+   Generates a RNN with set amount of layers
+   
+    Args:
+        hidden_layers (int): amount of hidden layers.
+        units (int): amount of units in the convolution
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values
+        dropout (float): fraction of the units to drop for the linear transformation of the inputs
+        type (&#34;gru&#34;, &#34;simplernn&#34;, &#34;lstm&#34;): type of a RNN model.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+
+    Returns:
+        object: unfitted RNN model.
+    &#34;&#34;&#34;
+
+    model = Sequential()
+    return_sequences = hidden_layers &gt; 1  # Last layer cannot return sequences when stacking
+    if isinstance (units, int):
+        # Add hidden layers
+        if type.lower() == &#39;lstm&#39;:
+            model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;gru&#39;:
+            model.add(GRU(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))   
+        else:
+            print(&#34;Type is not supported!&#34;)
+
+        for i in range(hidden_layers - 1):
+            return_sequences = i &lt; hidden_layers - 2  # Last layer cannot return sequences when stacking
+
+            # Select and add type of layer
+            if type.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;gru&#39;:
+                model.add(GRU(units, dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences))
+    else:
+        # Add hidden layers
+        if type.lower() == &#39;lstm&#39;:
+            model.add(LSTM(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;gru&#39;:
+            model.add(GRU(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif type.lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))   
+        else:
+            print(&#34;Type is not supported!&#34;)
+
+        for i in range(hidden_layers - 1):
+            return_sequences = i &lt; hidden_layers - 2  # Last layer cannot return sequences when stacking
+
+            # Select and add type of layer
+            if type.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units[i+1], dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;gru&#39;:
+                model.add(GRU(units[i+1], dropout=dropout, return_sequences=return_sequences))
+            elif type.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units[i+1], dropout=dropout, return_sequences=return_sequences))
+    
+
+
+
+    model.add(Dense(horizon))
+
+    # compile model
+    if type.lower() == &#39;lstm&#39;:
+        model.compile(optimizer=&#39;Adam&#39;, loss=&#39;mae&#39;)
+    else:
+        model.compile(optimizer=&#39;RMSprop&#39;, loss=&#39;mse&#39;)
+
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.generate_seq_model"><code class="name flex">
+<span>def <span class="ident">generate_seq_model</span></span>(<span>layers=['cnn', 'lstm'], look_back=12, filters=32, units=32, horizon=1, dropout=0.0, n_features=1, kernel_size=None, dilation_rate=1, dilation_mode='additive', optimizer='Adam', loss='mae', padding='causal', strides=1, pool_size=2, conv_activation='relu', dense_layers=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates a sequence (cnn, rnn combination) model</p>
+<p>Args:
+layers (list of str): layers of a seq model.
+look_back (int): amount of values in a single X.
+filters (int): amount of filters in the convolution.
+horizon (int): amount of output values.
+dropout = (float): fraction of the units to drop in a feed-forward part.
+n_features (int): dimensions of time series. Multivariate time series not fully supported.
+kernel_size (int): the size of the convolution window.
+dilation_rate (int): the dilation rate to use for dilated convolution.
+dilation_mode ("additive", "multiplicative", None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+optimizer (str): optimizer to use for compiling a model.
+loss (str): loos metric to use for compiling a model.
+padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.
+strides (int):
+stride length of the convolution.
+pool_size (int): size of the max pooling window.
+conv_activation (str): activation function of convolutional layers.
+dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]</p>
+<p>Returns:
+object: unfitted sequence model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_seq_model(layers = [&#34;cnn&#34;, &#34;lstm&#34;], 
+                       look_back = 12, 
+                       filters = 32,
+                       units = 32,
+                       horizon = 1, 
+                       dropout = 0.0, 
+                       n_features = 1, 
+                       kernel_size = None, 
+                       dilation_rate = 1, 
+                       dilation_mode = &#34;additive&#34;,
+                       optimizer = &#34;Adam&#34;,
+                       loss = &#34;mae&#34;,
+                       padding = &#39;causal&#39;,
+                       strides = 1,
+                       pool_size = 2,
+                       conv_activation = &#34;relu&#34;,
+                       dense_layers = None):
+    &#34;&#34;&#34;
+   Generates a sequence (cnn, rnn combination) model
+   
+    Args:
+        layers (list of str): layers of a seq model.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        pool_size (int): size of the max pooling window.
+        conv_activation (str): activation function of convolutional layers.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        
+    Returns:
+        object: unfitted sequence model.
+    &#34;&#34;&#34;
+
+    model = Sequential()
+    if kernel_size is None:
+        kernel_size = 2 
+
+    unit_c = 0
+    filter_c = 0
+    return_sequences = len(layers) &gt; 1
+    # Add hidden layers
+    if isinstance(units, int):
+        if layers[0].lower() == &#39;lstm&#39;:
+            model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif layers[0].lower() == &#39;gru&#39;:
+            model.add(GRU(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+        elif layers[0].lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))   
+    else:
+        if layers[0].lower() == &#39;lstm&#39;:
+            model.add(LSTM(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+            unit_c = unit_c + 1
+        elif layers[0].lower() == &#39;gru&#39;:
+            model.add(GRU(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))
+            unit_c = unit_c + 1
+        elif layers[0].lower() == &#39;simplernn&#39;:
+            model.add(SimpleRNN(units[0], dropout=dropout, return_sequences=return_sequences, input_shape=(look_back, n_features)))  
+            unit_c = unit_c + 1
+
+    if layers[0].lower() == &#39;cnn&#39;:
+        if isinstance(filters, list):
+            model.add(Conv1D(filters[filter_c], 
+            kernel_size = kernel_size, 
+            padding = padding,
+            strides = strides, 
+            activation = conv_activation, 
+            dilation_rate = dilation_rate, 
+            input_shape = (look_back,  n_features)))
+            filter_c = filter_c + 1
+        else:
+            model.add(Conv1D(filters, 
+            kernel_size = kernel_size, 
+            padding = padding,
+            strides = strides, 
+            activation = conv_activation, 
+            dilation_rate = dilation_rate, 
+            input_shape = (look_back,  n_features)))
+        model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+    i = 0
+    for layer in layers:
+        if i == 0:
+            i = i + 1
+            continue
+        return_sequences = i &lt; len(layers) - 1
+        # Select and add type of layer
+        if isinstance(units, int):
+            if layer.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units, dropout=dropout, return_sequences=return_sequences))
+            elif layer.lower() == &#39;gru&#39;:
+                model.add(GRU(units, dropout=dropout, return_sequences=return_sequences))
+            elif layer.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units, dropout=dropout, return_sequences=return_sequences))
+            elif layer.lower() == &#39;cnn&#39;:
+                if dilation_mode == &#34;multiplicative&#34;:
+                    dilation_rate = dilation_rate * 2
+                if dilation_mode == &#34;additive&#34;:
+                    dilation_rate = dilation_rate + 1
+                if isinstance(filters, int):
+                    model.add(Conv1D(filters, 
+                        kernel_size = kernel_size, 
+                        padding = padding, 
+                        strides = strides, 
+                        activation = conv_activation, 
+                        dilation_rate = dilation_rate))
+                else:
+                    model.add(Conv1D(filters[filter_c], 
+                                    kernel_size = filters, 
+                                    padding = padding, 
+                                    strides = strides, 
+                                    activation = conv_activation, 
+                                    dilation_rate = dilation_rate))
+                    filter_c = filter_c + 1
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+            else:
+                print(&#34;Type is not supported!&#34;)
+        else:
+            if layer.lower() == &#39;lstm&#39;:
+                model.add(LSTM(units[unit_c], dropout=dropout, return_sequences=return_sequences))
+                unit_c = unit_c + 1
+            elif layer.lower() == &#39;gru&#39;:
+                model.add(GRU(units[unit_c], dropout=dropout, return_sequences=return_sequences))
+                unit_c = unit_c + 1
+            elif layer.lower() == &#39;simplernn&#39;:
+                model.add(SimpleRNN(units[unit_c], dropout=dropout, return_sequences=return_sequences))
+                unit_c = unit_c + 1
+            elif layer.lower() == &#39;cnn&#39;:
+                if dilation_mode == &#34;multiplicative&#34;:
+                    dilation_rate = dilation_rate * 2
+                if dilation_mode == &#34;additive&#34;:
+                    dilation_rate = dilation_rate + 1
+                if isinstance(filters, int):
+                    model.add(Conv1D(filters, 
+                        kernel_size = kernel_size, 
+                        padding = padding, 
+                        strides = strides, 
+                        activation = conv_activation, 
+                        dilation_rate = dilation_rate))
+                else:
+                    model.add(Conv1D(filters[filter_c], 
+                                    kernel_size = filters, 
+                                    padding = padding, 
+                                    strides = strides, 
+                                    activation = conv_activation, 
+                                    dilation_rate = dilation_rate))
+                    filter_c = filter_c + 1
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+            else:
+                print(&#34;Type is not supported!&#34;)
+        i = i + 1
+
+    if dense_layers is None:
+        dense_layers = [horizon]
+    for layer in dense_layers:
+        model.add(Dense(int(layer)))
+        
+    # Add output layer
+    model.compile(optimizer = optimizer, loss = loss)
+
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.generate_transformer"><code class="name flex">
+<span>def <span class="ident">generate_transformer</span></span>(<span>look_back=12, horizon=1, n_features=1, num_transformer_blocks=4, dropout=0.25, head_size=256, num_heads=4, ff_dim=4, mlp_units=[128], mlp_dropout=0.4)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates a Transformer model</p>
+<p>Args:
+look_back (int): amount of values in a single X.
+horizon (int): amount of output values.
+n_features (int): dimensions of time series. Multivariate time series not fully supported.
+num_transformer_blocks (int): amount of transformer blocks.
+dropout = (float): fraction of the units to drop in a feed-forward part.
+head_size = (int): size of a head in a multi-head attention layer.
+num_heads = (int): amount of heads in a multi-head attention layer.
+ff_dim = (int): amount of filters in a feed forward part
+mlp_units = (list of ints): values of mlp units
+mlp_dropout = (int): fraction of the units to drop in a mlp part.</p>
+<p>Returns:
+object: unfitted Transformer model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_transformer(   look_back = 12, 
+                            horizon = 1,
+                            n_features = 1,
+                            num_transformer_blocks = 4,
+                            dropout = 0.25, 
+                            head_size = 256, 
+                            num_heads = 4, 
+                            ff_dim = 4,
+                            mlp_units = [128],
+                            mlp_dropout = 0.4):
+    &#34;&#34;&#34;
+   Generates a Transformer model
+   
+    Args:
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        num_transformer_blocks (int): amount of transformer blocks.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        head_size = (int): size of a head in a multi-head attention layer.
+        num_heads = (int): amount of heads in a multi-head attention layer.
+        ff_dim = (int): amount of filters in a feed forward part
+        mlp_units = (list of ints): values of mlp units
+        mlp_dropout = (int): fraction of the units to drop in a mlp part.
+
+    Returns:
+        object: unfitted Transformer model.
+    &#34;&#34;&#34;
+    model = Transformer(look_back = look_back, 
+                        horizon = horizon,
+                        n_features = n_features,
+                        num_transformer_blocks = num_transformer_blocks,
+                        dropout = dropout, 
+                        head_size = head_size, 
+                        num_heads = num_heads, 
+                        ff_dim = ff_dim,
+                        mlp_units = mlp_units,
+                        mlp_dropout = mlp_dropout)
+    model = model.build()
+    model.compile(optimizer=&#34;Adam&#34;, 
+                  loss = &#34;mse&#34;,
+                  metrics=[keras.metrics.RootMeanSquaredError(), keras.metrics.MeanAbsoluteError(), keras.metrics.MeanAbsolutePercentageError()])
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.make_cnn"><code class="name flex">
+<span>def <span class="ident">make_cnn</span></span>(<span>dataset, hidden_layers=1, look_back=12, filters=None, horizon=1, kernel_size=12, train_size=0.9, test_size=None, val_size=None, plot=True, max_plot=70, fig_size=(15, 5), dilation_rate=1, dilation_mode='additive', batch_size=12, epochs=20, verbose=0, n_features=1, padding='causal', strides=1, activation='relu', dense_layers=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates, fits and evals CNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataset</code></strong> :&ensp;<code>DataFrame, ndarray</code></dt>
+<dd>dataset to use.</dd>
+<dt><strong><code>hidden_layers</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of hidden layers.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>filters</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of filters in the convolution</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values</dd>
+<dt><strong><code>kernel_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the size of the convolution window</dd>
+<dt><strong><code>train_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>Value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.</dd>
+<dt><strong><code>test_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>Value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size</dd>
+<dt><strong><code>val_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>Value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.</dd>
+<dt><strong><code>plot</code></strong> :&ensp;<code>bool</code></dt>
+<dd>plot predictions.</dd>
+<dt>max_plot(int): maximum number of values to plot.</dt>
+<dt>fig_size ((int, int)): size of a plot.</dt>
+<dt><strong><code>dilation_rate</code></strong> :&ensp;<code>int</code></dt>
+<dd>the dilation rate to use for dilated convolution.</dd>
+<dt>dilation_mode ("additive", "multiplicative", None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.</dt>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the number of samples that will be propagated through the network</dd>
+<dt><strong><code>epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of iterations of NN models through whole training data.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>int</code></dt>
+<dd>print additional information.</dd>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt>padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.</dt>
+<dt><strong><code>strides</code></strong> :&ensp;<code>int</code></dt>
+<dd>stride length of the convolution.</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>activation function.</dd>
+<dt><strong><code>dense_layers</code></strong> :&ensp;<code>None, iterable</code> of <code>ints</code></dt>
+<dd>dense layers at the end of NN. Default value: [1]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>fitted CNN model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_cnn(dataset,
+              hidden_layers = 1,
+                look_back = 12,
+                filters = None,
+                horizon = 1,
+                kernel_size = 12,
+                train_size = 0.9,
+                test_size = None,
+                val_size = None, 
+                plot = True,
+                max_plot = 70, 
+                fig_size = (15, 5),
+                dilation_rate = 1,
+                dilation_mode = &#34;additive&#34;,
+                batch_size = 12,
+                epochs = 20, 
+                verbose = 0,
+                n_features = 1,
+                padding = &#39;causal&#39;,
+                strides = 1,
+                activation = &#34;relu&#34;,
+                dense_layers = None):
+    
+
+    &#34;&#34;&#34;
+    Generates, fits and evals CNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution
+        horizon (int): amount of output values
+        kernel_size (int): the size of the convolution window
+        train_size (float, None): Value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): Value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): Value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        max_plot(int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        verbose (int): print additional information.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        activation (str): activation function.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+
+    Returns:
+        object: fitted CNN model.
+    &#34;&#34;&#34;     
+
+    model = generate_cnn( hidden_layers = hidden_layers,
+                          look_back = look_back,
+                          horizon = horizon,
+                          kernel_size = kernel_size,
+                          dilation_mode = dilation_mode,
+                          dilation_rate = dilation_rate,
+                          n_features = n_features,
+                          filters = filters,
+                          padding = padding,
+                          strides = strides,
+                          activation = activation,
+                          dense_layers = dense_layers)
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset(
+        dataset, 
+        train_size = train_size, 
+        look_back = look_back, 
+        val_size = val_size,
+        test_size = test_size)
+                                                                                             
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/cnn_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;) 
+
+    model.fit(train_x,
+          train_y,
+          batch_size=batch_size,
+          epochs=epochs,
+          validation_data=(val_x, val_y),
+          callbacks=[earlystop, best_val],
+          verbose=verbose)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot, plot = plot, fig_size = fig_size)
+
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.make_rnn"><code class="name flex">
+<span>def <span class="ident">make_rnn</span></span>(<span>dataset, hidden_layers=1, look_back=12, horizon=1, train_size=0.9, test_size=None, val_size=None, units=32, dropout=0.0, type='GRU', n_features=1, plot=True, batch_size=None, epochs=20, max_plot=70, fig_size=(15, 5))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates, fits and evals a RNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataset</code></strong> :&ensp;<code>DataFrame, ndarray</code></dt>
+<dd>dataset to use.</dd>
+<dt><strong><code>hidden_layers</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of hidden layers.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values</dd>
+<dt><strong><code>train_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.</dd>
+<dt><strong><code>test_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size</dd>
+<dt><strong><code>val_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.</dd>
+<dt><strong><code>units</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of units in the convolution</dd>
+<dt><strong><code>dropout</code></strong> :&ensp;<code>float</code></dt>
+<dd>fraction of the units to drop for the linear transformation of the inputs</dd>
+<dt>type ("gru", "simplernn", "lstm"): type of a RNN model.</dt>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt><strong><code>plot</code></strong> :&ensp;<code>bool</code></dt>
+<dd>plot predictions.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the number of samples that will be propagated through the network</dd>
+<dt><strong><code>epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of iterations of NN models through whole training data.</dd>
+<dt><strong><code>max_plot</code></strong> :&ensp;<code>int</code></dt>
+<dd>maximum number of values to plot.</dd>
+</dl>
+<p>fig_size ((int, int)): size of a plot.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>fitted RNN model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_rnn(dataset, 
+            hidden_layers = 1, 
+            look_back = 12, 
+            horizon = 1, 
+            train_size = 0.9,
+            test_size = None, 
+            val_size = None, 
+            units = 32, 
+            dropout = 0.0, 
+            type = &#39;GRU&#39;,  
+            n_features = 1,
+            plot = True,
+            batch_size = None,
+            epochs = 20,
+            max_plot = 70, 
+            fig_size = (15, 5)):
+    &#34;&#34;&#34;
+    Generates, fits and evals a RNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        units (int): amount of units in the convolution
+        dropout (float): fraction of the units to drop for the linear transformation of the inputs
+        type (&#34;gru&#34;, &#34;simplernn&#34;, &#34;lstm&#34;): type of a RNN model.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
+    &#34;&#34;&#34; 
+    model = generate_rnn(hidden_layers = hidden_layers, units = units, look_back = look_back, horizon = horizon, dropout = dropout, type = type, n_features = n_features)
+
+    if batch_size is None:
+        batch_size = 16
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset( 
+        dataset, 
+        train_size = train_size, 
+        look_back = look_back,  
+        val_size = val_size,
+        test_size = test_size)
+                                                                                              
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/rnn_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;)                                                                                                        
+    model.fit(train_x,
+          train_y,
+          batch_size = batch_size,
+          epochs = epochs,
+          validation_data = (val_x, val_y),
+          callbacks = [earlystop, best_val],
+          verbose = 0)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot,  fig_size = fig_size, plot = plot)
+
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.make_seq_model"><code class="name flex">
+<span>def <span class="ident">make_seq_model</span></span>(<span>dataset, layers=['cnn', 'lstm'], look_back=12, filters=32, horizon=1, dropout=0.0, n_features=1, kernel_size=None, dilation_rate=1, dilation_mode='additive', optimizer='Adam', loss='mae', train_size=0.9, test_size=None, val_size=None, plot=True, batch_size=None, units=32, epochs=20, max_plot=70, padding='causal', strides=1, pool_size=2, conv_activation='relu', dense_layers=None, fig_size=(15, 5))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates, fits and evals a sequence (cnn, rnn combination) model with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataset</code></strong> :&ensp;<code>DataFrame, ndarray</code></dt>
+<dd>dataset to use.</dd>
+<dt><strong><code>layers</code></strong> :&ensp;<code>list</code> of <code>str</code></dt>
+<dd>layers of a seq model.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>filters</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of filters in the convolution.</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values.</dd>
+<dt>dropout = (float): fraction of the units to drop in a feed-forward part.</dt>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt><strong><code>kernel_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the size of the convolution window.</dd>
+<dt><strong><code>dilation_rate</code></strong> :&ensp;<code>int</code></dt>
+<dd>the dilation rate to use for dilated convolution.</dd>
+<dt>dilation_mode ("additive", "multiplicative", None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.</dt>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>str</code></dt>
+<dd>optimizer to use for compiling a model.</dd>
+<dt><strong><code>loss</code></strong> :&ensp;<code>str</code></dt>
+<dd>loos metric to use for compiling a model.</dd>
+<dt><strong><code>train_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.</dd>
+<dt><strong><code>test_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size</dd>
+<dt><strong><code>val_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.</dd>
+<dt><strong><code>plot</code></strong> :&ensp;<code>bool</code></dt>
+<dd>plot predictions.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the number of samples that will be propagated through the network.</dd>
+<dt><strong><code>units</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of units in the convolution</dd>
+<dt><strong><code>epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of iterations of NN models through whole training data.</dd>
+<dt><strong><code>max_plot</code></strong> :&ensp;<code>int</code></dt>
+<dd>maximum number of values to plot.</dd>
+<dt>padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.</dt>
+<dt><strong><code>strides</code></strong> :&ensp;<code>int</code></dt>
+<dd>stride length of the convolution.</dd>
+<dt><strong><code>pool_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>size of the max pooling window.</dd>
+<dt><strong><code>conv_activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>activation function of convolutional layers.</dd>
+<dt><strong><code>dense_layers</code></strong> :&ensp;<code>None, iterable</code> of <code>ints</code></dt>
+<dd>dense layers at the end of NN. Default value: [1]</dd>
+</dl>
+<p>fig_size ((int, int)): size of a plot.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>fitted RNN model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_seq_model(dataset, 
+            layers = [&#34;cnn&#34;, &#34;lstm&#34;], 
+            look_back = 12,
+            filters = 32,
+            horizon = 1, 
+            dropout = 0.0,  
+            n_features = 1, 
+            kernel_size = None, 
+            dilation_rate = 1, 
+            dilation_mode = &#34;additive&#34;,
+            optimizer = &#34;Adam&#34;,
+            loss = &#34;mae&#34;,
+            train_size = 0.9, 
+            test_size = None,
+            val_size = None,  
+            plot = True,
+            batch_size = None,
+            units = 32,
+            epochs = 20,
+            max_plot = 70, 
+            padding = &#39;causal&#39;,
+            strides = 1,
+            pool_size = 2,
+            conv_activation = &#34;relu&#34;,
+            dense_layers = None,
+            fig_size = (15, 5)):
+    
+
+    &#34;&#34;&#34;
+    Generates, fits and evals a sequence (cnn, rnn combination) model with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        layers (list of str): layers of a seq model.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network.
+        units (int): amount of units in the convolution
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        pool_size (int): size of the max pooling window.
+        conv_activation (str): activation function of convolutional layers.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
+    &#34;&#34;&#34; 
+    model = generate_seq_model(layers = layers, 
+                            look_back = look_back,
+                            units = units,
+                            filters = filters,
+                            horizon = horizon, 
+                            dropout = dropout, 
+                            n_features = n_features,
+                            kernel_size = kernel_size,
+                            dilation_rate = dilation_rate, 
+                            dilation_mode = dilation_mode,
+                            optimizer = optimizer,
+                            loss = loss,
+                            padding = padding,
+                            strides = strides,
+                            pool_size = pool_size,
+                            conv_activation = conv_activation,
+                            dense_layers = dense_layers)
+
+    if batch_size is None:
+        batch_size = 16
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset( 
+        dataset, 
+        train_size = train_size, 
+        look_back = look_back, 
+        val_size = val_size,
+        test_size = test_size)  
+                                                                                       
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/seq_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;) 
+    model.fit(train_x,
+          train_y,
+          batch_size = batch_size,
+          epochs = epochs,
+          validation_data = (val_x, val_y),
+          callbacks = [earlystop, best_val],
+          verbose = 0)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot, fig_size = fig_size, plot = plot)
+
+    return model</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.make_transformer"><code class="name flex">
+<span>def <span class="ident">make_transformer</span></span>(<span>dataset, train_size=0.9, test_size=None, val_size=None, batch_size=32, epochs=20, verbose=False, look_back=12, horizon=1, n_features=1, num_transformer_blocks=4, dropout=0.25, head_size=256, num_heads=4, ff_dim=4, mlp_units=[128], mlp_dropout=0.4, plot=True, max_plot=100, fig_size=(15, 5))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates, fits and evals generator. Callbacks used for fitting: EarlyStopping, ModelCheckpoint</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataset</code></strong> :&ensp;<code>DataFrame, ndarray</code></dt>
+<dd>dataset to use.</dd>
+<dt><strong><code>train_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.</dd>
+<dt><strong><code>test_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size</dd>
+<dt><strong><code>val_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the number of samples that will be propagated through the network</dd>
+<dt><strong><code>epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of iterations of NN models through whole training data.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code></dt>
+<dd>print additional information.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values.</dd>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt><strong><code>num_transformer_blocks</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of transformer blocks.</dd>
+<dt>dropout = (float): fraction of the units to drop in a feed-forward part.</dt>
+<dt>head_size = (int): size of a head in a multi-head attention layer.</dt>
+<dt>num_heads = (int): amount of heads in a multi-head attention layer.</dt>
+<dt>ff_dim = (int): amount of filters in a feed forward part</dt>
+<dt>mlp_units = (list of ints): values of mlp units</dt>
+<dt>mlp_dropout = (int): fraction of the units to drop in a mlp part.</dt>
+<dt><strong><code>plot</code></strong> :&ensp;<code>bool</code></dt>
+<dd>plot predictions.</dd>
+<dt><strong><code>max_plot</code></strong> :&ensp;<code>int</code></dt>
+<dd>maximum number of values to plot.</dd>
+</dl>
+<p>fig_size ((int, int)): size of a plot.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>fitted RNN model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_transformer(dataset,
+                    train_size = 0.9,
+                    test_size = None,
+                    val_size = None, 
+                    batch_size = 32,
+                    epochs = 20,
+                    verbose = False,
+                    look_back = 12, 
+                    horizon = 1,
+                    n_features = 1,
+                    num_transformer_blocks = 4,
+                    dropout = 0.25, 
+                    head_size = 256, 
+                    num_heads = 4, 
+                    ff_dim = 4,
+                    mlp_units = [128],
+                    mlp_dropout = 0.4,
+                    plot = True,
+                    max_plot = 100, 
+                    fig_size = (15, 5)):
+    &#34;&#34;&#34;
+    Generates, fits and evals generator. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        verbose (bool): print additional information.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        num_transformer_blocks (int): amount of transformer blocks.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        head_size = (int): size of a head in a multi-head attention layer.
+        num_heads = (int): amount of heads in a multi-head attention layer.
+        ff_dim = (int): amount of filters in a feed forward part
+        mlp_units = (list of ints): values of mlp units
+        mlp_dropout = (int): fraction of the units to drop in a mlp part.
+        plot (bool): plot predictions.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
+    &#34;&#34;&#34; 
+    model = generate_transformer(look_back = look_back, 
+                            horizon = horizon,
+                            n_features = n_features,
+                            num_transformer_blocks = num_transformer_blocks,
+                            dropout = dropout, 
+                            head_size=head_size, 
+                            num_heads=num_heads, 
+                            ff_dim=ff_dim,
+                            mlp_units=mlp_units,
+                            mlp_dropout=mlp_dropout)
+
+    train_x, train_y, val_x, val_y, test_x, test_y, _, _, testScaler = utils.prepare_dataset(
+        dataset, 
+        train_size = train_size, 
+        test_size = test_size,
+        look_back = look_back, 
+        val_size = val_size)
+
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 50, restore_best_weights=True)
+    best_val = ModelCheckpoint(&#39;generated_models/transformer_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;) 
+
+    model.fit(train_x,
+          train_y,
+          batch_size = batch_size,
+          epochs = epochs,
+          validation_data = (val_x, val_y),
+          callbacks = [earlystop, best_val],
+          verbose = verbose)
+    
+    utils.eval_model(model, test_x, test_y, testScaler, max_plot = max_plot, plot = plot, fig_size = fig_size)
+
+    return model</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="TSEnsemble.nn.ACL"><code class="flex name class">
+<span>class <span class="ident">ACL</span></span>
+<span>(</span><span>order=None, seasonal_order=None, season=None, look_back=12, horizon=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Arima-CNN-LSTM model that uses CNN-LSTM on residuals from arima predictions.</p>
+<p>Initialize an ACL object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt>order (None, tuple(int, int, int)): p, d, q values.</dt>
+<dt>seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.</dt>
+<dt><strong><code>season</code></strong> :&ensp;<code>None, int</code></dt>
+<dd>season value.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ACL:
+    &#34;&#34;&#34;
+    Arima-CNN-LSTM model that uses CNN-LSTM on residuals from arima predictions.
+    &#34;&#34;&#34;
+    def __init__(self,
+            order = None,
+            seasonal_order = None,
+            season = None,
+            look_back = 12, 
+            horizon = 1):
+        &#34;&#34;&#34;
+        Initialize an ACL object.
+        Args:
+            order (None, tuple(int, int, int)): p, d, q values.
+            seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+            season (None, int): season value.
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values
+        &#34;&#34;&#34;
+        self.order = order
+        self.seasonal_order = seasonal_order
+        self.season = season
+        self.look_back = look_back
+        self.horizon = horizon
+        
+
+    def fit(self,
+                dataset,
+                order = None,
+                seasonal_order = None,
+                season = None,
+                auto = False, 
+                look_back = 12, 
+                horizon = 1, 
+                dropout = 0.0, 
+                n_features = 1, 
+                kernel_size = None, 
+                dilation_rate = 1, 
+                dilation_mode = &#34;additive&#34;,
+                optimizer = &#34;Adam&#34;,
+                loss = &#34;mae&#34;,
+                train_size = 0.95, 
+                test_size = None,
+                val_size = None,  
+                plot = True,
+                batch_size = None,
+                epochs = 20,
+                max_plot = 150, 
+                fig_size = (15, 5),
+                verbose = True,
+                padding = &#39;causal&#39;,
+                strides = 1,
+                cnn_layers = 1,
+                lstm_layers = 1,
+                pool_size = 2,
+                fitted = True,
+                dense_layers = None,
+                filters = None,
+                units = None,
+                cnn_activation = &#34;relu&#34;):
+        &#34;&#34;&#34;
+        Initialize an ACL object.
+        
+        Args:
+            dataset (DataFrame, ndarray): dataset to use.
+            order (None, tuple(int, int, int)): p, d, q values.
+            seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+            season (None, int): season value.
+            auto (bool): use auto_arima.
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values.
+            dropout = (float): fraction of the units to drop in a feed-forward part.
+            n_features (int): dimensions of time series. Multivariate time series not fully supported.
+            kernel_size (int): the size of the convolution window.
+            dilation_rate (int): the dilation rate to use for dilated convolution.
+            dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+            optimizer (str): optimizer to use for compiling a model.
+            loss (str): loos metric to use for compiling a model.
+            train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+            test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+            val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+            plot (bool): plot predictions.
+            batch_size (int): the number of samples that will be propagated through the network.
+            epochs (int): amount of iterations of NN models through whole training data.
+            max_plot (int): maximum number of values to plot.
+            fig_size ((int, int)): size of a plot.
+            verbose (int): print additional information.
+            padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+            strides (int):  stride length of the convolution.
+            cnn_layers (int): amount of cnn layers to use.
+            lstm_layers (int): amount of lstm layers to use.
+            pool_size (int): size of the max pooling window.
+            fitted (bool): return fitted model.
+            dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+            filters (None, int): amount of filters in the convolution.
+            units (None, int): amount of units in the convolution.
+            cnn_activation (str): activation function of convolutional layers.
+        Returns:
+            object: ACL model.
+        &#34;&#34;&#34;
+        if self.order is None:
+            if order is None:
+                auto = True
+            else:
+                self.order = order
+
+        if not(seasonal_order is None):
+            self.seasonal_order = seasonal_order
+        if not(season is None):
+            self.season = season
+        if not(look_back is None):
+            self.look_back = look_back
+        if not(horizon is None):
+            self.horizon = horizon
+
+        self.train_size = train_size
+        self.test_size = test_size
+
+        if season is None:
+            if not(seasonal_order is None):
+                self.season == self.seasonal_order[3]
+            else: 
+                self.season = self.look_back
+        else:
+            self.season = season
+
+        if batch_size is None:
+            batch_size = 16
+
+        if kernel_size is None:
+            kernel_size = 2 
+
+        if auto:
+            arima_model = arima.auto_arima(dataset, season = self.season)
+        elif self.order is None:
+            raise Exception(&#34;Order is not set and auto is False. Set auto to true?&#34;)
+        else:
+            arima_model = arima.make_arima(dataset, 
+                            self.order, 
+                            seasonal_order = self.seasonal_order,
+                            train_size = train_size, 
+                            test_size = test_size,
+                            fig_size = fig_size,
+                            max_plot = max_plot,
+                            plot = False,
+                            verbose = False)
+            
+        self.arima_model = arima_model
+
+        train_x, train_y, val_x, val_y, test_x, test_y, trainScaler, valScaler, testScaler = utils.prepare_dataset( 
+            dataset, 
+            train_size = train_size, 
+            look_back = self.look_back, 
+            val_size = val_size)
+        
+        train_end = len(train_y) + self.look_back - 1
+        arima_predictions = arima_model.predict(self.look_back, train_end)
+        arima_val_predictions = arima_model.predict(train_end + self.look_back, train_end + len(val_y) + self.look_back - 1)
+        unscaled_train_y = trainScaler.inverse_transform(train_y.reshape(-1,1)).flatten()
+        unscaled_val_y = valScaler.inverse_transform(val_y.reshape(-1,1)).flatten()
+        residuals = np.subtract(arima_predictions, unscaled_train_y)
+        val_residuals = np.subtract(arima_val_predictions, unscaled_val_y)
+
+        model = Sequential()
+        if filters is None:
+            filters = 2 * self.look_back 
+        # Add hidden layers
+        filters_c = 0
+        units_c = 0
+        if isinstance(filters, int):
+            model.add(Conv1D(filters, 
+                            kernel_size=kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=cnn_activation, 
+                            dilation_rate=dilation_rate, 
+                            input_shape=(look_back,  n_features)))
+            model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+        else:
+            model.add(Conv1D(filters[filters_c], 
+                            kernel_size=kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=cnn_activation, 
+                            dilation_rate=dilation_rate, 
+                            input_shape=(look_back,  n_features)))
+            filters_c = filters_c + 1
+            model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+        for _ in range(cnn_layers-1):
+            if not (dilation_mode is None):
+                if dilation_mode == &#34;multiplicative&#34;:
+                    dilation_rate = dilation_rate * 2
+                if dilation_mode == &#34;additive&#34;:
+                    dilation_rate = dilation_rate + 1
+            if isinstance(filters, int):
+                model.add(Conv1D(filters, 
+                                kernel_size = kernel_size, 
+                                padding=padding, 
+                                strides=strides, 
+                                activation=cnn_activation, 
+                                dilation_rate=dilation_rate))
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+            else:
+                model.add(Conv1D(filters[filters_c], 
+                kernel_size=kernel_size, 
+                padding=padding, 
+                strides=strides, 
+                activation=cnn_activation, 
+                dilation_rate=dilation_rate, 
+                input_shape=(look_back,  n_features)))
+                filters_c = filters_c + 1
+                model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+        # Add output layer
+        model.add(Flatten())
+        model.add(Dropout(dropout))
+        model.add(Reshape((-1,1)))
+
+        if units is None:
+            units = look_back * 5
+
+        return_sequences = lstm_layers &gt; 1
+        if isinstance(units, int):
+            model.add(LSTM(units, return_sequences=return_sequences, input_shape=(self.look_back, n_features)))
+        else:
+            model.add(LSTM(units[units_c], return_sequences=return_sequences, input_shape=(self.look_back, n_features)))
+            units_c = units_c + 1
+
+        for i in range(lstm_layers - 1):
+            return_sequences = i &lt; lstm_layers - 2  # Last layer should not return sequences when stacking
+            if isinstance(units, int):
+                model.add(LSTM(units, return_sequences=return_sequences))
+            else:
+                model.add(LSTM(units[units_c], return_sequences=return_sequences))
+                units_c = units_c + 1
+
+        # Add dense layers
+        if dense_layers is None:
+            dense_layers = [look_back * 3, horizon]
+        for layer in dense_layers:
+            model.add(Dense(layer))
+
+        # compile model
+        model.compile(optimizer = optimizer, loss = loss)
+
+        earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+        best_val = ModelCheckpoint(&#39;generated_models/acl_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;)                                                                                                        
+        model.fit(train_x,
+            residuals, 
+            batch_size = batch_size,
+            epochs = epochs, 
+            validation_data = (val_x, val_residuals), 
+            callbacks = [earlystop, best_val], 
+            verbose=0)
+        self.model = model
+
+        if fitted == False:
+          return model 
+
+        test_y = testScaler.inverse_transform(test_y.reshape(-1,1)).flatten()
+        arima_test_predictions = self.arima_model.forecast(len(test_y + self.look_back)).flatten()
+        model_test_predictions = self.model.predict(test_x).flatten()
+        test_predictions = np.sum([model_test_predictions, arima_test_predictions], axis = 0) 
+
+        if plot:
+            plt.figure(figsize=fig_size)
+            if max_plot&lt;len(test_y):
+                plt.plot(test_y[-max_plot:], label = &#34;Actual&#34;)
+                plt.plot(test_predictions[-max_plot:], label = &#34;Prediction&#34;)
+            else:
+                plt.plot(test_y, label = &#34;Actual&#34;)
+                plt.plot(test_predictions, label = &#34;Prediction&#34;)               
+            plt.ylabel(&#39;Values&#39;, fontsize=15)
+            plt.legend()
+            plt.show()
+
+        if verbose:
+            predicts = pd.DataFrame({&#39;prediction&#39; : test_predictions, &#39;actual&#39; : test_y})
+            print(predicts)
+
+            rmse = utils.get_rmse(test_predictions, test_y)
+            mse =  utils.get_mse(test_predictions, test_y)
+            mae =  utils.get_mae(test_predictions, test_y)
+            mape =  utils.get_mape(test_predictions, test_y)
+            print(&#34;RMSE = {}, MSE = {}, MAE = {}, MAPE = {}&#34;.format(rmse, mse, mae, mape))
+        return self
+    
+    def predict(self, X):
+        pass
+        
+    def forecast(self, dataset, n, plot = True, datePlot = &#34;date&#34;, dateStep = 1, fig_size = (10,10)):
+        &#34;&#34;&#34;
+        Out-of-sample forecast of a fitted model, based on a given dataset.
+        Plots Predictions, Actuals (with data, if index is datetime64).
+
+        Args:
+            dataset (DataFrame, ndarray): time series dataset.
+            n (int): amount of values to predict.
+            plot (bool): plot predictions and actuals.
+            fig_size ((int, int)): size of a plot.
+            datePlot (&#34;date&#34;, &#34;time&#34;): format of date. Date example : 09.01.2024, time example: 21:10
+            dateStep (int): prints each n date. 
+        Returns:
+            (DataFrame) : predictions and actuals DataFrame.
+        &#34;&#34;&#34;   
+        if isinstance(dataset, str):
+         dataset = utils.ts_from_csv(dataset)
+
+        # Create date indices for predictions
+        if isinstance(dataset, pd.DataFrame) and dataset.index.inferred_type == &#39;datetime64&#39;:
+            if dataset.index.inferred_type == &#39;datetime64&#39;:
+                last_date = dataset.index[-1]
+                delta = last_date - dataset.index[-2]
+                if delta.days &gt;= 28 and delta.days &lt;=31:
+                    delta = pd.DateOffset(months=1)
+                offset = pd.tseries.frequencies.to_offset(delta)
+                dateIndex = pd.date_range(last_date + delta, last_date + delta*n, freq=offset)
+
+        # Scale dataset
+        dataset = np.array(dataset)
+
+        arima_model = ARIMA(dataset, 
+                            order=self.order, 
+                            seasonal_order = self.seasonal_order)
+        arima_model = arima_model.fit()
+        arima_forecast = arima_model.forecast(n)
+
+        Scaler = MinMaxScaler(feature_range=(-1, 1))
+        dataset = Scaler.fit_transform(dataset)
+        dataset = dataset.tolist() 
+        s = self.look_back
+        X = dataset[-s:]
+        predictions = []
+        # Predicts 1 future value based on last look_back values
+        for i in range(n):
+            fromX = s - i
+            a = X[-fromX:] if fromX &gt; 0 else []
+            fromPredictions = min(i,s)
+            a = a + predictions[-fromPredictions:]
+            a = np.array(a).reshape(1, -1, 1)
+            prediction = self.model.predict(a, verbose = 0).tolist()
+            predictions = predictions + prediction
+        # Unscale predictions and add to list
+        # predictions = Scaler.inverse_transform(predictions).flatten().tolist()
+        predictions = np.sum([arima_forecast, np.array(predictions).flatten()], axis = 0) 
+        # predictions = np.sum(arima_forecast, predictions)      
+        # models_predictions = np.array(models_predictions).T.tolist()
+
+
+        df = pd.DataFrame({&#39;predictions&#39;: predictions.flatten()}, index = dateIndex)
+
+        if plot:
+            # Get indices for plotting
+            if datePlot == &#34;date&#34;:
+                date = [str(d)[:10] for d in df.index.values]
+            elif datePlot == &#34;time&#34;: 
+                date = [str(d)[11:16] for d in df.index.values]
+            
+            x = date
+            y = df[&#34;predictions&#34;].values.tolist()
+
+            # plot predictions
+            plt.figure(figsize=fig_size)
+            plt.plot(x,y)
+            plt.xticks(rotation = 75)
+            plt.xticks(np.arange(0, len(x)+1, dateStep))
+            plt.show()
+
+        return df
+        pass
+
+    def eval(self):
+        pass</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="TSEnsemble.nn.ACL.eval"><code class="name flex">
+<span>def <span class="ident">eval</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def eval(self):
+    pass</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.ACL.fit"><code class="name flex">
+<span>def <span class="ident">fit</span></span>(<span>self, dataset, order=None, seasonal_order=None, season=None, auto=False, look_back=12, horizon=1, dropout=0.0, n_features=1, kernel_size=None, dilation_rate=1, dilation_mode='additive', optimizer='Adam', loss='mae', train_size=0.95, test_size=None, val_size=None, plot=True, batch_size=None, epochs=20, max_plot=150, fig_size=(15, 5), verbose=True, padding='causal', strides=1, cnn_layers=1, lstm_layers=1, pool_size=2, fitted=True, dense_layers=None, filters=None, units=None, cnn_activation='relu')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize an ACL object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataset</code></strong> :&ensp;<code>DataFrame, ndarray</code></dt>
+<dd>dataset to use.</dd>
+<dt>order (None, tuple(int, int, int)): p, d, q values.</dt>
+<dt>seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.</dt>
+<dt><strong><code>season</code></strong> :&ensp;<code>None, int</code></dt>
+<dd>season value.</dd>
+<dt><strong><code>auto</code></strong> :&ensp;<code>bool</code></dt>
+<dd>use auto_arima.</dd>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values.</dd>
+<dt>dropout = (float): fraction of the units to drop in a feed-forward part.</dt>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt><strong><code>kernel_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the size of the convolution window.</dd>
+<dt><strong><code>dilation_rate</code></strong> :&ensp;<code>int</code></dt>
+<dd>the dilation rate to use for dilated convolution.</dd>
+<dt>dilation_mode ("additive", "multiplicative", None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.</dt>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>str</code></dt>
+<dd>optimizer to use for compiling a model.</dd>
+<dt><strong><code>loss</code></strong> :&ensp;<code>str</code></dt>
+<dd>loos metric to use for compiling a model.</dd>
+<dt><strong><code>train_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.</dd>
+<dt><strong><code>test_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size</dd>
+<dt><strong><code>val_size</code></strong> :&ensp;<code>float, None</code></dt>
+<dd>value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.</dd>
+<dt><strong><code>plot</code></strong> :&ensp;<code>bool</code></dt>
+<dd>plot predictions.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>the number of samples that will be propagated through the network.</dd>
+<dt><strong><code>epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of iterations of NN models through whole training data.</dd>
+<dt><strong><code>max_plot</code></strong> :&ensp;<code>int</code></dt>
+<dd>maximum number of values to plot.</dd>
+<dt>fig_size ((int, int)): size of a plot.</dt>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>int</code></dt>
+<dd>print additional information.</dd>
+<dt>padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.</dt>
+<dt><strong><code>strides</code></strong> :&ensp;<code>int</code></dt>
+<dd>stride length of the convolution.</dd>
+<dt><strong><code>cnn_layers</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of cnn layers to use.</dd>
+<dt><strong><code>lstm_layers</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of lstm layers to use.</dd>
+<dt><strong><code>pool_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>size of the max pooling window.</dd>
+<dt><strong><code>fitted</code></strong> :&ensp;<code>bool</code></dt>
+<dd>return fitted model.</dd>
+<dt><strong><code>dense_layers</code></strong> :&ensp;<code>None, iterable</code> of <code>ints</code></dt>
+<dd>dense layers at the end of NN. Default value: [1]</dd>
+<dt><strong><code>filters</code></strong> :&ensp;<code>None, int</code></dt>
+<dd>amount of filters in the convolution.</dd>
+<dt><strong><code>units</code></strong> :&ensp;<code>None, int</code></dt>
+<dd>amount of units in the convolution.</dd>
+<dt><strong><code>cnn_activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>activation function of convolutional layers.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>ACL model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit(self,
+            dataset,
+            order = None,
+            seasonal_order = None,
+            season = None,
+            auto = False, 
+            look_back = 12, 
+            horizon = 1, 
+            dropout = 0.0, 
+            n_features = 1, 
+            kernel_size = None, 
+            dilation_rate = 1, 
+            dilation_mode = &#34;additive&#34;,
+            optimizer = &#34;Adam&#34;,
+            loss = &#34;mae&#34;,
+            train_size = 0.95, 
+            test_size = None,
+            val_size = None,  
+            plot = True,
+            batch_size = None,
+            epochs = 20,
+            max_plot = 150, 
+            fig_size = (15, 5),
+            verbose = True,
+            padding = &#39;causal&#39;,
+            strides = 1,
+            cnn_layers = 1,
+            lstm_layers = 1,
+            pool_size = 2,
+            fitted = True,
+            dense_layers = None,
+            filters = None,
+            units = None,
+            cnn_activation = &#34;relu&#34;):
+    &#34;&#34;&#34;
+    Initialize an ACL object.
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        order (None, tuple(int, int, int)): p, d, q values.
+        seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+        season (None, int): season value.
+        auto (bool): use auto_arima.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode (&#34;additive&#34;, &#34;multiplicative&#34;, None): if hidden_layers &gt; 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network.
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+        verbose (int): print additional information.
+        padding = (&#39;valid&#39;, &#39;same&#39;, &#39;causal&#39;): valid means no padding. &#34;same&#34; results in padding evenly to the left/right or up/down of the input. &#34;causal&#34; results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        cnn_layers (int): amount of cnn layers to use.
+        lstm_layers (int): amount of lstm layers to use.
+        pool_size (int): size of the max pooling window.
+        fitted (bool): return fitted model.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        filters (None, int): amount of filters in the convolution.
+        units (None, int): amount of units in the convolution.
+        cnn_activation (str): activation function of convolutional layers.
+    Returns:
+        object: ACL model.
+    &#34;&#34;&#34;
+    if self.order is None:
+        if order is None:
+            auto = True
+        else:
+            self.order = order
+
+    if not(seasonal_order is None):
+        self.seasonal_order = seasonal_order
+    if not(season is None):
+        self.season = season
+    if not(look_back is None):
+        self.look_back = look_back
+    if not(horizon is None):
+        self.horizon = horizon
+
+    self.train_size = train_size
+    self.test_size = test_size
+
+    if season is None:
+        if not(seasonal_order is None):
+            self.season == self.seasonal_order[3]
+        else: 
+            self.season = self.look_back
+    else:
+        self.season = season
+
+    if batch_size is None:
+        batch_size = 16
+
+    if kernel_size is None:
+        kernel_size = 2 
+
+    if auto:
+        arima_model = arima.auto_arima(dataset, season = self.season)
+    elif self.order is None:
+        raise Exception(&#34;Order is not set and auto is False. Set auto to true?&#34;)
+    else:
+        arima_model = arima.make_arima(dataset, 
+                        self.order, 
+                        seasonal_order = self.seasonal_order,
+                        train_size = train_size, 
+                        test_size = test_size,
+                        fig_size = fig_size,
+                        max_plot = max_plot,
+                        plot = False,
+                        verbose = False)
+        
+    self.arima_model = arima_model
+
+    train_x, train_y, val_x, val_y, test_x, test_y, trainScaler, valScaler, testScaler = utils.prepare_dataset( 
+        dataset, 
+        train_size = train_size, 
+        look_back = self.look_back, 
+        val_size = val_size)
+    
+    train_end = len(train_y) + self.look_back - 1
+    arima_predictions = arima_model.predict(self.look_back, train_end)
+    arima_val_predictions = arima_model.predict(train_end + self.look_back, train_end + len(val_y) + self.look_back - 1)
+    unscaled_train_y = trainScaler.inverse_transform(train_y.reshape(-1,1)).flatten()
+    unscaled_val_y = valScaler.inverse_transform(val_y.reshape(-1,1)).flatten()
+    residuals = np.subtract(arima_predictions, unscaled_train_y)
+    val_residuals = np.subtract(arima_val_predictions, unscaled_val_y)
+
+    model = Sequential()
+    if filters is None:
+        filters = 2 * self.look_back 
+    # Add hidden layers
+    filters_c = 0
+    units_c = 0
+    if isinstance(filters, int):
+        model.add(Conv1D(filters, 
+                        kernel_size=kernel_size, 
+                        padding=padding, 
+                        strides=strides, 
+                        activation=cnn_activation, 
+                        dilation_rate=dilation_rate, 
+                        input_shape=(look_back,  n_features)))
+        model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+    else:
+        model.add(Conv1D(filters[filters_c], 
+                        kernel_size=kernel_size, 
+                        padding=padding, 
+                        strides=strides, 
+                        activation=cnn_activation, 
+                        dilation_rate=dilation_rate, 
+                        input_shape=(look_back,  n_features)))
+        filters_c = filters_c + 1
+        model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+    for _ in range(cnn_layers-1):
+        if not (dilation_mode is None):
+            if dilation_mode == &#34;multiplicative&#34;:
+                dilation_rate = dilation_rate * 2
+            if dilation_mode == &#34;additive&#34;:
+                dilation_rate = dilation_rate + 1
+        if isinstance(filters, int):
+            model.add(Conv1D(filters, 
+                            kernel_size = kernel_size, 
+                            padding=padding, 
+                            strides=strides, 
+                            activation=cnn_activation, 
+                            dilation_rate=dilation_rate))
+            model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+        else:
+            model.add(Conv1D(filters[filters_c], 
+            kernel_size=kernel_size, 
+            padding=padding, 
+            strides=strides, 
+            activation=cnn_activation, 
+            dilation_rate=dilation_rate, 
+            input_shape=(look_back,  n_features)))
+            filters_c = filters_c + 1
+            model.add(MaxPooling1D(pool_size = pool_size, padding=&#39;same&#39;))
+
+    # Add output layer
+    model.add(Flatten())
+    model.add(Dropout(dropout))
+    model.add(Reshape((-1,1)))
+
+    if units is None:
+        units = look_back * 5
+
+    return_sequences = lstm_layers &gt; 1
+    if isinstance(units, int):
+        model.add(LSTM(units, return_sequences=return_sequences, input_shape=(self.look_back, n_features)))
+    else:
+        model.add(LSTM(units[units_c], return_sequences=return_sequences, input_shape=(self.look_back, n_features)))
+        units_c = units_c + 1
+
+    for i in range(lstm_layers - 1):
+        return_sequences = i &lt; lstm_layers - 2  # Last layer should not return sequences when stacking
+        if isinstance(units, int):
+            model.add(LSTM(units, return_sequences=return_sequences))
+        else:
+            model.add(LSTM(units[units_c], return_sequences=return_sequences))
+            units_c = units_c + 1
+
+    # Add dense layers
+    if dense_layers is None:
+        dense_layers = [look_back * 3, horizon]
+    for layer in dense_layers:
+        model.add(Dense(layer))
+
+    # compile model
+    model.compile(optimizer = optimizer, loss = loss)
+
+    earlystop = EarlyStopping(monitor = &#39;val_loss&#39;, min_delta = 0, patience = 20)
+    best_val = ModelCheckpoint(&#39;generated_models/acl_model_{epoch:02d}.h5&#39;, save_best_only = True, mode = &#39;min&#39;)                                                                                                        
+    model.fit(train_x,
+        residuals, 
+        batch_size = batch_size,
+        epochs = epochs, 
+        validation_data = (val_x, val_residuals), 
+        callbacks = [earlystop, best_val], 
+        verbose=0)
+    self.model = model
+
+    if fitted == False:
+      return model 
+
+    test_y = testScaler.inverse_transform(test_y.reshape(-1,1)).flatten()
+    arima_test_predictions = self.arima_model.forecast(len(test_y + self.look_back)).flatten()
+    model_test_predictions = self.model.predict(test_x).flatten()
+    test_predictions = np.sum([model_test_predictions, arima_test_predictions], axis = 0) 
+
+    if plot:
+        plt.figure(figsize=fig_size)
+        if max_plot&lt;len(test_y):
+            plt.plot(test_y[-max_plot:], label = &#34;Actual&#34;)
+            plt.plot(test_predictions[-max_plot:], label = &#34;Prediction&#34;)
+        else:
+            plt.plot(test_y, label = &#34;Actual&#34;)
+            plt.plot(test_predictions, label = &#34;Prediction&#34;)               
+        plt.ylabel(&#39;Values&#39;, fontsize=15)
+        plt.legend()
+        plt.show()
+
+    if verbose:
+        predicts = pd.DataFrame({&#39;prediction&#39; : test_predictions, &#39;actual&#39; : test_y})
+        print(predicts)
+
+        rmse = utils.get_rmse(test_predictions, test_y)
+        mse =  utils.get_mse(test_predictions, test_y)
+        mae =  utils.get_mae(test_predictions, test_y)
+        mape =  utils.get_mape(test_predictions, test_y)
+        print(&#34;RMSE = {}, MSE = {}, MAE = {}, MAPE = {}&#34;.format(rmse, mse, mae, mape))
+    return self</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.ACL.forecast"><code class="name flex">
+<span>def <span class="ident">forecast</span></span>(<span>self, dataset, n, plot=True, datePlot='date', dateStep=1, fig_size=(10, 10))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Out-of-sample forecast of a fitted model, based on a given dataset.
+Plots Predictions, Actuals (with data, if index is datetime64).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataset</code></strong> :&ensp;<code>DataFrame, ndarray</code></dt>
+<dd>time series dataset.</dd>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values to predict.</dd>
+<dt><strong><code>plot</code></strong> :&ensp;<code>bool</code></dt>
+<dd>plot predictions and actuals.</dd>
+<dt>fig_size ((int, int)): size of a plot.</dt>
+<dt>datePlot ("date", "time"): format of date. Date example : 09.01.2024, time example: 21:10</dt>
+<dt><strong><code>dateStep</code></strong> :&ensp;<code>int</code></dt>
+<dd>prints each n date. </dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(DataFrame) : predictions and actuals DataFrame.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forecast(self, dataset, n, plot = True, datePlot = &#34;date&#34;, dateStep = 1, fig_size = (10,10)):
+    &#34;&#34;&#34;
+    Out-of-sample forecast of a fitted model, based on a given dataset.
+    Plots Predictions, Actuals (with data, if index is datetime64).
+
+    Args:
+        dataset (DataFrame, ndarray): time series dataset.
+        n (int): amount of values to predict.
+        plot (bool): plot predictions and actuals.
+        fig_size ((int, int)): size of a plot.
+        datePlot (&#34;date&#34;, &#34;time&#34;): format of date. Date example : 09.01.2024, time example: 21:10
+        dateStep (int): prints each n date. 
+    Returns:
+        (DataFrame) : predictions and actuals DataFrame.
+    &#34;&#34;&#34;   
+    if isinstance(dataset, str):
+     dataset = utils.ts_from_csv(dataset)
+
+    # Create date indices for predictions
+    if isinstance(dataset, pd.DataFrame) and dataset.index.inferred_type == &#39;datetime64&#39;:
+        if dataset.index.inferred_type == &#39;datetime64&#39;:
+            last_date = dataset.index[-1]
+            delta = last_date - dataset.index[-2]
+            if delta.days &gt;= 28 and delta.days &lt;=31:
+                delta = pd.DateOffset(months=1)
+            offset = pd.tseries.frequencies.to_offset(delta)
+            dateIndex = pd.date_range(last_date + delta, last_date + delta*n, freq=offset)
+
+    # Scale dataset
+    dataset = np.array(dataset)
+
+    arima_model = ARIMA(dataset, 
+                        order=self.order, 
+                        seasonal_order = self.seasonal_order)
+    arima_model = arima_model.fit()
+    arima_forecast = arima_model.forecast(n)
+
+    Scaler = MinMaxScaler(feature_range=(-1, 1))
+    dataset = Scaler.fit_transform(dataset)
+    dataset = dataset.tolist() 
+    s = self.look_back
+    X = dataset[-s:]
+    predictions = []
+    # Predicts 1 future value based on last look_back values
+    for i in range(n):
+        fromX = s - i
+        a = X[-fromX:] if fromX &gt; 0 else []
+        fromPredictions = min(i,s)
+        a = a + predictions[-fromPredictions:]
+        a = np.array(a).reshape(1, -1, 1)
+        prediction = self.model.predict(a, verbose = 0).tolist()
+        predictions = predictions + prediction
+    # Unscale predictions and add to list
+    # predictions = Scaler.inverse_transform(predictions).flatten().tolist()
+    predictions = np.sum([arima_forecast, np.array(predictions).flatten()], axis = 0) 
+    # predictions = np.sum(arima_forecast, predictions)      
+    # models_predictions = np.array(models_predictions).T.tolist()
+
+
+    df = pd.DataFrame({&#39;predictions&#39;: predictions.flatten()}, index = dateIndex)
+
+    if plot:
+        # Get indices for plotting
+        if datePlot == &#34;date&#34;:
+            date = [str(d)[:10] for d in df.index.values]
+        elif datePlot == &#34;time&#34;: 
+            date = [str(d)[11:16] for d in df.index.values]
+        
+        x = date
+        y = df[&#34;predictions&#34;].values.tolist()
+
+        # plot predictions
+        plt.figure(figsize=fig_size)
+        plt.plot(x,y)
+        plt.xticks(rotation = 75)
+        plt.xticks(np.arange(0, len(x)+1, dateStep))
+        plt.show()
+
+    return df
+    pass</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.ACL.predict"><code class="name flex">
+<span>def <span class="ident">predict</span></span>(<span>self, X)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def predict(self, X):
+    pass</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="TSEnsemble.nn.Transformer"><code class="flex name class">
+<span>class <span class="ident">Transformer</span></span>
+<span>(</span><span>look_back=12, horizon=1, n_features=1, num_transformer_blocks=4, dropout=0.25, head_size=256, num_heads=4, ff_dim=4, mlp_units=[128], mlp_dropout=0.4)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Transformer Recurrent Neural Network</p>
+<p>Initialize a Transformer object</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>look_back</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of values in a single X.</dd>
+<dt><strong><code>horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of output values.</dd>
+<dt><strong><code>n_features</code></strong> :&ensp;<code>int</code></dt>
+<dd>dimensions of time series. Multivariate time series not fully supported.</dd>
+<dt><strong><code>num_transformer_blocks</code></strong> :&ensp;<code>int</code></dt>
+<dd>amount of transformer blocks.</dd>
+</dl>
+<p>dropout = (float): fraction of the units to drop in a feed-forward part.
+head_size = (int): size of a head in a multi-head attention layer.
+num_heads = (int): amount of heads in a multi-head attention layer.
+ff_dim = (int): amount of filters in a feed forward part
+mlp_units = (list of ints): values of mlp units
+mlp_dropout = (int): fraction of the units to drop in a mlp part.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Transformer(object):
+
+
+
+    &#34;&#34;&#34; Transformer Recurrent Neural Network
+    &#34;&#34;&#34;
+
+    def __init__(self,
+                look_back = 12, 
+                horizon = 1,
+                n_features = 1,
+                num_transformer_blocks = 4,
+                dropout = 0.25, 
+                head_size=256, 
+                num_heads=4, 
+                ff_dim=4,
+                mlp_units=[128],
+                mlp_dropout=0.4):
+        &#34;&#34;&#34;
+        Initialize a Transformer object
+    
+        Args:
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values.
+            n_features (int): dimensions of time series. Multivariate time series not fully supported.
+            num_transformer_blocks (int): amount of transformer blocks.
+            dropout = (float): fraction of the units to drop in a feed-forward part.
+            head_size = (int): size of a head in a multi-head attention layer.
+            num_heads = (int): amount of heads in a multi-head attention layer.
+            ff_dim = (int): amount of filters in a feed forward part
+            mlp_units = (list of ints): values of mlp units
+            mlp_dropout = (int): fraction of the units to drop in a mlp part.
+        &#34;&#34;&#34;
+        self.look_back = look_back
+        self.n_features = n_features
+        self.horizon = horizon
+
+        self.head_size = head_size
+        self.num_heads = num_heads
+        self.ff_dim = ff_dim
+        self.num_transformer_blocks = num_transformer_blocks
+        self.mlp_units = mlp_units
+        self.mlp_dropout = mlp_dropout
+        self.dropout = dropout                
+        self.mlp_units=mlp_units
+        self.mlp_dropout=mlp_dropout
+
+
+    def transformer_encoder(self,
+        inputs):
+        &#34;&#34;&#34;
+        transformer encoder block
+    
+        Args:
+            inputs (obj): keras input layer.
+        Returns:
+            object: keras model, input layer + transformer block 
+        &#34;&#34;&#34;
+
+        # Normalization and Attention
+        x = layers.LayerNormalization(epsilon=1e-6)(inputs)
+        x = layers.MultiHeadAttention(
+        key_dim=self.head_size, num_heads=self.num_heads, dropout=self.dropout)(x, x)
+        x = layers.Dropout(self.dropout)(x)
+
+        res = x + inputs
+
+        # Feed Forward Part
+        x = layers.LayerNormalization(epsilon=1e-6)(res)
+        x = layers.Conv1D(filters=self.ff_dim, kernel_size=1, activation=&#34;relu&#34;)(x)
+        x = layers.Dropout(self.dropout)(x)
+        x = layers.Conv1D(filters=inputs.shape[-1], kernel_size=1)(x)
+        return x + res
+
+
+    def build(self):
+        &#34;&#34;&#34; 
+        Build the model architecture
+        Returns:
+            object: Transformer model
+        &#34;&#34;&#34;
+
+        inputs = keras.Input(shape=(self.look_back, self.n_features))
+        x = inputs
+        for _ in range(self.num_transformer_blocks):
+            x = self.transformer_encoder(x)
+
+        x = layers.GlobalAveragePooling1D(data_format=&#34;channels_first&#34;)(x)
+        for dim in self.mlp_units:
+            x = layers.Dense(dim, activation=&#34;relu&#34;)(x)
+            x = layers.Dropout(self.mlp_dropout)(x)
+
+        # output layer
+        outputs = layers.Dense(self.horizon)(x)
+
+        return keras.Model(inputs, outputs)
+
+    # def restore(self,
+    #     filepath):
+    #     &#34;&#34;&#34; Restore a previously trained model
+    #     &#34;&#34;&#34;
+
+    #     # Load the architecture
+    #     self.model = load_model(filepath)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="TSEnsemble.nn.Transformer.build"><code class="name flex">
+<span>def <span class="ident">build</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the model architecture</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>Transformer model</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build(self):
+    &#34;&#34;&#34; 
+    Build the model architecture
+    Returns:
+        object: Transformer model
+    &#34;&#34;&#34;
+
+    inputs = keras.Input(shape=(self.look_back, self.n_features))
+    x = inputs
+    for _ in range(self.num_transformer_blocks):
+        x = self.transformer_encoder(x)
+
+    x = layers.GlobalAveragePooling1D(data_format=&#34;channels_first&#34;)(x)
+    for dim in self.mlp_units:
+        x = layers.Dense(dim, activation=&#34;relu&#34;)(x)
+        x = layers.Dropout(self.mlp_dropout)(x)
+
+    # output layer
+    outputs = layers.Dense(self.horizon)(x)
+
+    return keras.Model(inputs, outputs)</code></pre>
+</details>
+</dd>
+<dt id="TSEnsemble.nn.Transformer.transformer_encoder"><code class="name flex">
+<span>def <span class="ident">transformer_encoder</span></span>(<span>self, inputs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>transformer encoder block</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>inputs</code></strong> :&ensp;<code>obj</code></dt>
+<dd>keras input layer.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>object</code></dt>
+<dd>keras model, input layer + transformer block</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def transformer_encoder(self,
+    inputs):
+    &#34;&#34;&#34;
+    transformer encoder block
+
+    Args:
+        inputs (obj): keras input layer.
+    Returns:
+        object: keras model, input layer + transformer block 
+    &#34;&#34;&#34;
+
+    # Normalization and Attention
+    x = layers.LayerNormalization(epsilon=1e-6)(inputs)
+    x = layers.MultiHeadAttention(
+    key_dim=self.head_size, num_heads=self.num_heads, dropout=self.dropout)(x, x)
+    x = layers.Dropout(self.dropout)(x)
+
+    res = x + inputs
+
+    # Feed Forward Part
+    x = layers.LayerNormalization(epsilon=1e-6)(res)
+    x = layers.Conv1D(filters=self.ff_dim, kernel_size=1, activation=&#34;relu&#34;)(x)
+    x = layers.Dropout(self.dropout)(x)
+    x = layers.Conv1D(filters=inputs.shape[-1], kernel_size=1)(x)
+    return x + res</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="TSEnsemble" href="index.html">TSEnsemble</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="TSEnsemble.nn.generate_cnn" href="#TSEnsemble.nn.generate_cnn">generate_cnn</a></code></li>
+<li><code><a title="TSEnsemble.nn.generate_rnn" href="#TSEnsemble.nn.generate_rnn">generate_rnn</a></code></li>
+<li><code><a title="TSEnsemble.nn.generate_seq_model" href="#TSEnsemble.nn.generate_seq_model">generate_seq_model</a></code></li>
+<li><code><a title="TSEnsemble.nn.generate_transformer" href="#TSEnsemble.nn.generate_transformer">generate_transformer</a></code></li>
+<li><code><a title="TSEnsemble.nn.make_cnn" href="#TSEnsemble.nn.make_cnn">make_cnn</a></code></li>
+<li><code><a title="TSEnsemble.nn.make_rnn" href="#TSEnsemble.nn.make_rnn">make_rnn</a></code></li>
+<li><code><a title="TSEnsemble.nn.make_seq_model" href="#TSEnsemble.nn.make_seq_model">make_seq_model</a></code></li>
+<li><code><a title="TSEnsemble.nn.make_transformer" href="#TSEnsemble.nn.make_transformer">make_transformer</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="TSEnsemble.nn.ACL" href="#TSEnsemble.nn.ACL">ACL</a></code></h4>
+<ul class="">
+<li><code><a title="TSEnsemble.nn.ACL.eval" href="#TSEnsemble.nn.ACL.eval">eval</a></code></li>
+<li><code><a title="TSEnsemble.nn.ACL.fit" href="#TSEnsemble.nn.ACL.fit">fit</a></code></li>
+<li><code><a title="TSEnsemble.nn.ACL.forecast" href="#TSEnsemble.nn.ACL.forecast">forecast</a></code></li>
+<li><code><a title="TSEnsemble.nn.ACL.predict" href="#TSEnsemble.nn.ACL.predict">predict</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="TSEnsemble.nn.Transformer" href="#TSEnsemble.nn.Transformer">Transformer</a></code></h4>
+<ul class="">
+<li><code><a title="TSEnsemble.nn.Transformer.build" href="#TSEnsemble.nn.Transformer.build">build</a></code></li>
+<li><code><a title="TSEnsemble.nn.Transformer.transformer_encoder" href="#TSEnsemble.nn.Transformer.transformer_encoder">transformer_encoder</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

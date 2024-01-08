@@ -19,6 +19,11 @@ class Ensemble():
   def __init__(self, models = [], regressor = "wmean", dataset = None, regr_params = None, params = None):
     """ 
     Initialize a model object
+    Args:
+        models (list of objs): models, used in an ensemble.
+        regressor (None, str): type of a regressor used as a meta-model.
+        dataset (DataFrame, ndarray): dataset to use.
+        regr_params (iterable): hyperparameters of meta-model. Alias: params.
     """
     self.model = None
     self.models = models
@@ -47,11 +52,28 @@ class Ensemble():
           train_models_size = 0.8,
           batch_size = 32,
           epochs = 20,
-          early_stop = None,
-          models_callbacks = [EarlyStopping(monitor='val_loss', min_delta=0, patience=10),
-                      ModelCheckpoint('generated_models/cnn_model_{epoch:02d}.h5', save_best_only=True, mode='min') ]):
+          early_stop = None):
     """ 
     Fit a model based on object models and a full given dataset.
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        look_back (int): amount of values in a single X.
+        fit_models (bool): fit models on a dataset. If False, models should be trained beforehand.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        metric (str): loss metric to use for models evaluation.
+        regr_params (iterable): hyperparameters of meta-model. Alias: params.
+        features = []: use additional features alongside models.
+        models_val_size (float, None): value from 0 to 1 to specify fraction of model validaton dataset from train dataset. Default value : val_size.
+        regr_val_size (float, None): value from 0 to 1 to specify fraction of regression validaton dataset from train dataset. Default value : val_size.
+        train_models_size = (float, None): value from 0 to 1 to specify fraction of train dataset used for models fitting. Other fraction is used for meta-model. Default value : 0.8.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        early_stop (None, int): stop training model if it doesn't improve after n epochs.
+    Returns:
+        object: fitted RNN model.
     """
     
     # val_num = int(len(dataset) * val_size * train_size) 
@@ -185,7 +207,7 @@ class Ensemble():
                 batch_size=batch_size,
                 epochs=epochs,
                 validation_data=(models_val_x, scaled_models_val_y),
-                callbacks=models_callbacks,
+                callbacks=[EarlyStopping(monitor='val_loss', min_delta=0, patience=early_stop)],
                 verbose=0)    
             else: 
                 model.fit(models_train_x,
@@ -439,15 +461,38 @@ class Ensemble():
     return utils.eval_model(self.model, test_x, test_y, max_plot = max_plot, testScaler = testScaler, get = get, plot = plot, print_values = print_values, verbose = verbose, fig_size = fig_size)
 
 
-  def add_model(self, models):
-    self.models.append(models)
+  def add_model(self, model):
+    """ 
+    Add a model to an Ensemble object.
+    
+    Args:
+        model (obj): model object.
+    """
+    self.models.append(model)
     
   def remove_model(self, model):
+    """ 
+    Remove a model from an Ensemble object.
+    
+    Args:
+        model (obj): model object.
+    """
     self.models.remove(model)
     
   def forecast(self, dataset, n = 1, look_back = None, plot = True, datePlot = "date", dateStep = 1, fig_size = (10,10), features = []):
     """ 
     Out-of-sample forecast based on a given dataset
+    Args:
+        dataset (DataFrame, ndarray): time series dataset.
+        n (int): amount of values to predict.
+        look_back (int): amount of values in a single X.
+        plot (bool): plot predictions and actuals.
+        datePlot ("date", "time"): format of date. Date example : 09.01.2024, time example: 21:10
+        dateStep (int): prints each n date. 
+        fig_size ((int, int)): size of a plot.
+        features = []: use additional features alongside models.
+    Returns:
+        (DataFrame) : predictions and actuals DataFrame.
     """
     if isinstance(dataset, str):
       dataset = utils.ts_from_csv(dataset)

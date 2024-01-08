@@ -39,6 +39,33 @@ def make_cnn(dataset,
 
     """
     Generates, fits and evals CNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution
+        horizon (int): amount of output values
+        kernel_size (int): the size of the convolution window
+        train_size (float, None): Value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): Value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): Value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        max_plot(int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode ("additive", "multiplicative", None): if hidden_layers > 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        verbose (int): print additional information.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        activation (str): activation function.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+
+    Returns:
+        object: fitted CNN model.
     """     
 
     model = generate_cnn( hidden_layers = hidden_layers,
@@ -94,6 +121,27 @@ def make_rnn(dataset,
             fig_size = (15, 5)):
     """
     Generates, fits and evals a RNN with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        units (int): amount of units in the convolution
+        dropout (float): fraction of the units to drop for the linear transformation of the inputs
+        type ("gru", "simplernn", "lstm"): type of a RNN model.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
     """ 
     model = generate_rnn(hidden_layers = hidden_layers, units = units, look_back = look_back, horizon = horizon, dropout = dropout, type = type, n_features = n_features)
 
@@ -133,16 +181,41 @@ def make_transformer(dataset,
                     n_features = 1,
                     num_transformer_blocks = 4,
                     dropout = 0.25, 
-                    head_size=256, 
-                    num_heads=4, 
-                    ff_dim=4,
-                    mlp_units=[128],
-                    mlp_dropout=0.4,
+                    head_size = 256, 
+                    num_heads = 4, 
+                    ff_dim = 4,
+                    mlp_units = [128],
+                    mlp_dropout = 0.4,
                     plot = True,
                     max_plot = 100, 
                     fig_size = (15, 5)):
     """
     Generates, fits and evals generator. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        batch_size (int): the number of samples that will be propagated through the network
+        epochs (int): amount of iterations of NN models through whole training data.
+        verbose (bool): print additional information.
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        num_transformer_blocks (int): amount of transformer blocks.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        head_size = (int): size of a head in a multi-head attention layer.
+        num_heads = (int): amount of heads in a multi-head attention layer.
+        ff_dim = (int): amount of filters in a feed forward part
+        mlp_units = (list of ints): values of mlp units
+        mlp_dropout = (int): fraction of the units to drop in a mlp part.
+        plot (bool): plot predictions.
+        max_plot (int): maximum number of values to plot.
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
     """ 
     model = generate_transformer(look_back = look_back, 
                             horizon = horizon,
@@ -207,6 +280,37 @@ def make_seq_model(dataset,
 
     """
     Generates, fits and evals a sequence (cnn, rnn combination) model with set amount of layers. Callbacks used for fitting: EarlyStopping, ModelCheckpoint
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        layers (list of str): layers of a seq model.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode ("additive", "multiplicative", None): if hidden_layers > 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+        plot (bool): plot predictions.
+        batch_size (int): the number of samples that will be propagated through the network.
+        units (int): amount of units in the convolution
+        epochs (int): amount of iterations of NN models through whole training data.
+        max_plot (int): maximum number of values to plot.
+        padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        pool_size (int): size of the max pooling window.
+        conv_activation (str): activation function of convolutional layers.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        fig_size ((int, int)): size of a plot.
+
+    Returns:
+        object: fitted RNN model.
     """ 
     model = generate_seq_model(layers = layers, 
                             look_back = look_back,
@@ -265,6 +369,24 @@ def generate_cnn(hidden_layers = 1,
                  dense_layers = None): 
     """
     Generates a CNN with set amount of layers
+    
+    Args:
+        hidden_layers (int): amount of hidden layers.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution
+        horizon (int): amount of output values
+        kernel_size (int): the size of the convolution window
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode ("additive", "multiplicative", None): if hidden_layers > 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        batch_size (int): the number of samples that will be propagated through the network
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        activation (str): activation function.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+
+    Returns:
+        object: unfitted CNN model.
     """ 
     # Create and fit the CNN
     model = Sequential()
@@ -327,6 +449,18 @@ def generate_cnn(hidden_layers = 1,
 def generate_rnn(hidden_layers = 1, units = 32, look_back = 12, horizon = 1, dropout = 0.0, type = 'GRU', n_features = 1):
     """
    Generates a RNN with set amount of layers
+   
+    Args:
+        hidden_layers (int): amount of hidden layers.
+        units (int): amount of units in the convolution
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values
+        dropout (float): fraction of the units to drop for the linear transformation of the inputs
+        type ("gru", "simplernn", "lstm"): type of a RNN model.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+
+    Returns:
+        object: unfitted RNN model.
     """
 
     model = Sequential()
@@ -387,7 +521,7 @@ def generate_rnn(hidden_layers = 1, units = 32, look_back = 12, horizon = 1, dro
 
     return model
 
-def generate_transformer(look_back = 12, 
+def generate_transformer(   look_back = 12, 
                             horizon = 1,
                             n_features = 1,
                             num_transformer_blocks = 4,
@@ -398,7 +532,22 @@ def generate_transformer(look_back = 12,
                             mlp_units = [128],
                             mlp_dropout = 0.4):
     """
-   Generates a RNN with set amount of layers
+   Generates a Transformer model
+   
+    Args:
+        look_back (int): amount of values in a single X.
+        horizon (int): amount of output values.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        num_transformer_blocks (int): amount of transformer blocks.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        head_size = (int): size of a head in a multi-head attention layer.
+        num_heads = (int): amount of heads in a multi-head attention layer.
+        ff_dim = (int): amount of filters in a feed forward part
+        mlp_units = (list of ints): values of mlp units
+        mlp_dropout = (int): fraction of the units to drop in a mlp part.
+
+    Returns:
+        object: unfitted Transformer model.
     """
     model = Transformer(look_back = look_back, 
                         horizon = horizon,
@@ -435,6 +584,27 @@ def generate_seq_model(layers = ["cnn", "lstm"],
                        dense_layers = None):
     """
    Generates a sequence (cnn, rnn combination) model
+   
+    Args:
+        layers (list of str): layers of a seq model.
+        look_back (int): amount of values in a single X.
+        filters (int): amount of filters in the convolution.
+        horizon (int): amount of output values.
+        dropout = (float): fraction of the units to drop in a feed-forward part.
+        n_features (int): dimensions of time series. Multivariate time series not fully supported.
+        kernel_size (int): the size of the convolution window.
+        dilation_rate (int): the dilation rate to use for dilated convolution.
+        dilation_mode ("additive", "multiplicative", None): if hidden_layers > 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+        optimizer (str): optimizer to use for compiling a model.
+        loss (str): loos metric to use for compiling a model.
+        padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.
+        strides (int):  stride length of the convolution.
+        pool_size (int): size of the max pooling window.
+        conv_activation (str): activation function of convolutional layers.
+        dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+        
+    Returns:
+        object: unfitted sequence model.
     """
 
     model = Sequential()
@@ -566,18 +736,29 @@ def generate_seq_model(layers = ["cnn", "lstm"],
     return model
 
 class ACL:
+    """
+    Arima-CNN-LSTM model that uses CNN-LSTM on residuals from arima predictions.
+    """
     def __init__(self,
             order = None,
             seasonal_order = None,
             season = None,
             look_back = 12, 
             horizon = 1):
-
-            self.order = order
-            self.seasonal_order = seasonal_order
-            self.season = season
-            self.look_back = look_back
-            self.horizon = horizon
+        """
+        Initialize an ACL object.
+        Args:
+            order (None, tuple(int, int, int)): p, d, q values.
+            seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+            season (None, int): season value.
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values
+        """
+        self.order = order
+        self.seasonal_order = seasonal_order
+        self.season = season
+        self.look_back = look_back
+        self.horizon = horizon
         
 
     def fit(self,
@@ -614,7 +795,46 @@ class ACL:
                 filters = None,
                 units = None,
                 cnn_activation = "relu"):
+        """
+        Initialize an ACL object.
         
+        Args:
+            dataset (DataFrame, ndarray): dataset to use.
+            order (None, tuple(int, int, int)): p, d, q values.
+            seasonal_order (None, tuple(int, int, int, int)): P, D, Q, S values. S - season value.
+            season (None, int): season value.
+            auto (bool): use auto_arima.
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values.
+            dropout = (float): fraction of the units to drop in a feed-forward part.
+            n_features (int): dimensions of time series. Multivariate time series not fully supported.
+            kernel_size (int): the size of the convolution window.
+            dilation_rate (int): the dilation rate to use for dilated convolution.
+            dilation_mode ("additive", "multiplicative", None): if hidden_layers > 1, specify changing of dilation rate. Additive: +1, multiplicative: *2.
+            optimizer (str): optimizer to use for compiling a model.
+            loss (str): loos metric to use for compiling a model.
+            train_size (float, None): value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+            test_size (float, None): value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+            val_size (float, None): value from 0 to 1 to specify fraction of val dataset inside of a train dataset. Default value : 0.1.
+            plot (bool): plot predictions.
+            batch_size (int): the number of samples that will be propagated through the network.
+            epochs (int): amount of iterations of NN models through whole training data.
+            max_plot (int): maximum number of values to plot.
+            fig_size ((int, int)): size of a plot.
+            verbose (int): print additional information.
+            padding = ('valid', 'same', 'causal'): valid means no padding. "same" results in padding evenly to the left/right or up/down of the input. "causal" results in causal(dilated) convolutions.
+            strides (int):  stride length of the convolution.
+            cnn_layers (int): amount of cnn layers to use.
+            lstm_layers (int): amount of lstm layers to use.
+            pool_size (int): size of the max pooling window.
+            fitted (bool): return fitted model.
+            dense_layers (None, iterable of ints): dense layers at the end of NN. Default value: [1]
+            filters (None, int): amount of filters in the convolution.
+            units (None, int): amount of units in the convolution.
+            cnn_activation (str): activation function of convolutional layers.
+        Returns:
+            object: ACL model.
+        """
         if self.order is None:
             if order is None:
                 auto = True
@@ -806,7 +1026,20 @@ class ACL:
         pass
         
     def forecast(self, dataset, n, plot = True, datePlot = "date", dateStep = 1, fig_size = (10,10)):
+        """
+        Out-of-sample forecast of a fitted model, based on a given dataset.
+        Plots Predictions, Actuals (with data, if index is datetime64).
 
+        Args:
+            dataset (DataFrame, ndarray): time series dataset.
+            n (int): amount of values to predict.
+            plot (bool): plot predictions and actuals.
+            fig_size ((int, int)): size of a plot.
+            datePlot ("date", "time"): format of date. Date example : 09.01.2024, time example: 21:10
+            dateStep (int): prints each n date. 
+        Returns:
+            (DataFrame) : predictions and actuals DataFrame.
+        """   
         if isinstance(dataset, str):
          dataset = utils.ts_from_csv(dataset)
 
@@ -894,7 +1127,21 @@ class Transformer(object):
                 ff_dim=4,
                 mlp_units=[128],
                 mlp_dropout=0.4):
-
+        """
+        Initialize a Transformer object
+    
+        Args:
+            look_back (int): amount of values in a single X.
+            horizon (int): amount of output values.
+            n_features (int): dimensions of time series. Multivariate time series not fully supported.
+            num_transformer_blocks (int): amount of transformer blocks.
+            dropout = (float): fraction of the units to drop in a feed-forward part.
+            head_size = (int): size of a head in a multi-head attention layer.
+            num_heads = (int): amount of heads in a multi-head attention layer.
+            ff_dim = (int): amount of filters in a feed forward part
+            mlp_units = (list of ints): values of mlp units
+            mlp_dropout = (int): fraction of the units to drop in a mlp part.
+        """
         self.look_back = look_back
         self.n_features = n_features
         self.horizon = horizon
@@ -912,6 +1159,14 @@ class Transformer(object):
 
     def transformer_encoder(self,
         inputs):
+        """
+        transformer encoder block
+    
+        Args:
+            inputs (obj): keras input layer.
+        Returns:
+            object: keras model, input layer + transformer block 
+        """
 
         # Normalization and Attention
         x = layers.LayerNormalization(epsilon=1e-6)(inputs)
@@ -932,6 +1187,8 @@ class Transformer(object):
     def build(self):
         """ 
         Build the model architecture
+        Returns:
+            object: Transformer model
         """
 
         inputs = keras.Input(shape=(self.look_back, self.n_features))

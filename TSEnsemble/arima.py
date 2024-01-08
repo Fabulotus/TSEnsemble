@@ -9,6 +9,12 @@ def root_test(model, aic):
     """
     Check the roots of the new model, and set AIC to inf if the roots are
     near non-invertible. 
+    Args:
+        model (object): Model object.
+        aic (float): AIC value of model.
+
+    Returns:
+        float: Updated AIC value.
     """
     max_invroot = 0
     p, d, q = model.order
@@ -27,10 +33,10 @@ def auto_arima(dataset,
                method = 'stepwise', 
                max_p = 3, 
                d = None, 
+               D = None, 
                max_q = 3, 
                season = None, 
                max_P = 3, 
-               D = None, 
                max_Q = 3, 
                verbose = True, 
                train_size = None,
@@ -40,6 +46,21 @@ def auto_arima(dataset,
                max_plot = 200):
     """
     Automatically find the best parameters for (S)AR(I)MA model 
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        method ('stepwise', 'grid'): Method for finding the optimal parameters.
+        d, D (int): specify d, D parameters.
+        max_q, max_p, max_P, max_Q (int): maximum values of parameters.
+        season (int): required for Seasonal ARIMA. Seasonality of time series.
+        verbose (bool): print additional information.
+        train_size (float): Value from 0 to 1 to specify fraction of train dataset. Default value : 0.9. alias : train_split
+        plot (bool): plot predicted and observed values for test dataset.
+        fig_size (tuple(int, int)):  size of a plot.
+        max_plot(int): maximum number of values to plot.
+
+    Returns:
+        object: Optimal ARIMA model.
     """
 
     if train_size is None and train_split is None:
@@ -111,6 +132,13 @@ def auto_arima(dataset,
 def grid_auto_arima(data, max_p = 3, d = None, max_q = 3, season = None, max_P = 3, D = None, max_Q = 3):
     """
     Evaluate combinations of p, d and q values for an ARIMA model using grid search
+    Args:
+        data (DataFrame, ndarray): dataset to use.
+        d, D (int): specify d, D parameters.
+        max_q, max_p, max_P, max_Q (int): maximum values of parameters.
+        season (int): required for Seasonal ARIMA. Seasonality of time series.
+    Returns:
+        object: Optimal ARIMA model.
     """
     
     best_aic, best_model, = float("inf"), None
@@ -151,6 +179,13 @@ def grid_auto_arima(data, max_p = 3, d = None, max_q = 3, season = None, max_P =
 def stepwise_auto_arima(data, max_p = 3, d = None, max_q = 3, season = None, max_P = 3, D = None, max_Q = 3):
     """
     Stepwise approach to find the best parameters for (S)AR(I)MA model
+    Args:
+        data (DataFrame, ndarray): dataset to use.
+        d, D (int): specify d, D parameters.
+        max_q, max_p, max_P, max_Q (int): maximum values of parameters.
+        season (int): required for Seasonal ARIMA. Seasonality of time series.
+    Returns:
+        object: Optimal ARIMA model.
     """
 
     best_model = [np.inf,[],[],None]
@@ -465,6 +500,12 @@ def stepwise_auto_arima(data, max_p = 3, d = None, max_q = 3, season = None, max
 def model_arima(train_data, order, S = None):
     """
     Evaluate an ARIMA model for a given order (p,d,q)(P,D,Q,S) and return a model
+    Args:
+        train_data (DataFrame, ndarray): train dataset to use.
+        order (tuple(int, int, int)): p, d, q values.
+        S (tuple(int, int, int, int)): P, D, Q, S values. S - season value
+    Returns:
+        object: ARIMA model.
     """
     import warnings
     from statsmodels.tools.sm_exceptions import ConvergenceWarning
@@ -503,6 +544,23 @@ def model_arima(train_data, order, S = None):
         return model
 
 def make_arima(dataset, order, seasonal_order = None, train_size = 0.9, test_size = None, fig_size = (15,5), plot = True, verbose = True, max_plot = 200):
+    """
+    Create, fit and evaluate a (S)AR(I)MA model.
+    
+    Args:
+        dataset (DataFrame, ndarray): dataset to use.
+        order (tuple(int, int, int)): p, d, q values.
+        seasonal_order (tuple(int, int, int, int)): P, D, Q, S values. S - season value
+        train_size (float): Value from 0 to 1 to specify fraction of train dataset. Default value : 0.9.
+        test_size (float): Value from 0 to 1 to specify fraction of test dataset. Not needed if train_size is specified. Default value : 1 - train_size
+        fig_size (tuple(int, int)):  size of a plot.
+        plot (bool): plot predicted and observed values for test dataset.
+        verbose (bool): print additional information.
+        max_plot(int): maximum number of values to plot.
+
+    Returns:
+        object: ARIMA model.
+    """
     if not(isinstance(dataset, np.ndarray)):
         dataset = dataset.values
         dataset = dataset.astype('float64')
