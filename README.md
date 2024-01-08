@@ -103,6 +103,9 @@ ensemble_model.forecast(dataset, 12, fig_size = (5,5))
 utils.model_forecast(ar, dataset, 12, fig_size = (5,5))
 ```
 
+## Documentation
+[Documentation](https://rawcdn.githack.com/Fabulotus/TSEnsemble/59995037f6f4d3afa66c098fa9feb0ff4520e680/docs/index.html)
+
 ## Requirements
 Numpy, pandas, keras, sklearn, statsmodels, matplotlib, lightgbm, catboost.
 ## License
